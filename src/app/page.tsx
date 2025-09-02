@@ -5,14 +5,7 @@ import dadImage from "@/images/dad-cropped.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  BookOpen,
-  Calendar,
-  GalleryHorizontalEnd,
-  MessageSquareHeart,
-  Play,
-} from "lucide-react";
+import { BookOpen, GalleryHorizontalEnd, Play } from "lucide-react";
 
 export default function MemorialHomepage() {
   return (
@@ -137,43 +130,15 @@ export default function MemorialHomepage() {
             {/* Soft fog / glow */}
             <div className="absolute -inset-6 -z-0 rounded-full blur-3xl [background:radial-gradient(35rem_35rem_at_50%_60%,rgba(255,255,255,0.16),transparent_60%)]" />
           </div>
-
-          {/* Right-side quick facts */}
-          <div className="mx-auto mt-8 grid max-w-[486px] grid-cols-2 gap-3 text-sm text-white/70 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <Calendar className="mb-2 h-4 w-4" />
-              Celebration of Life
-              <div className="mt-1 text-white">May 18, 2025</div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <MessageSquareHeart className="mb-2 h-4 w-4" />
-              Share a Memory
-              <div className="mt-1 text-white">Open Guestbook</div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <ArrowRight className="mb-2 h-4 w-4" />
-              Directions
-              <div className="mt-1 text-white">Map to Service</div>
-            </div>
-          </div>
         </motion.section>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-12">
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+      <footer className="relative z-10 mx-auto max-w-6xl px-6 pt-28 pb-12">
+        <div className="flex justify-center">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} The Gadd Family
+            © {new Date().getFullYear()} Built with ❤️ by his family
           </p>
-          <div className="flex items-center gap-4 text-xs text-white/50">
-            <a href="#privacy" className="hover:text-white/80">
-              Privacy
-            </a>
-            <span className="opacity-40">•</span>
-            <a href="#contact" className="hover:text-white/80">
-              Contact
-            </a>
-          </div>
         </div>
       </footer>
     </div>
