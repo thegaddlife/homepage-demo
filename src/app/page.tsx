@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import dadImage from "@/images/dad-cropped.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -11,24 +13,6 @@ import {
   MessageSquareHeart,
   Play,
 } from "lucide-react";
-
-// Minimal button component (shadcn/ui-compatible API without dependency)
-function Button({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
-  href: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-3 text-sm font-medium tracking-wide text-white ring-1 ring-white/10 backdrop-blur-md transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-    >
-      {children}
-    </a>
-  );
-}
 
 export default function MemorialHomepage() {
   return (
@@ -92,22 +76,27 @@ export default function MemorialHomepage() {
           className="md:col-span-5"
         >
           <h1 className="text-5xl font-extrabold tracking-tight text-white md:text-6xl">
-            Eugene “Gene” Gadd
+            Eugene Wilfred Gadd
           </h1>
-          <p className="mt-3 text-lg text-white/70">1949 — 2025</p>
+          <p className="mt-3 text-lg text-white/70">1931 — 2012</p>
           <div className="mt-6 h-px w-28 bg-white/15" />
           <p className="mt-6 max-w-md text-balance text-white/70">
-            A beloved father, friend, and quiet craftsman whose warmth, wit, and
-            steady kindness shaped every room he entered. This page collects
-            memories, photos, and details to celebrate a life well lived.
+            A beloved father, husband, grandfather, and friend whose warmth,
+            wit, and steady kindness shaped every room he entered. This page
+            collects memories, photos, and details to celebrate a life well
+            lived.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button href="#obituary">
-              <BookOpen size={16} /> Read Obituary
+            <Button variant="secondary" asChild>
+              <Link href="/obituary">
+                <BookOpen size={16} /> Read Obituary
+              </Link>
             </Button>
-            <Button href="#gallery">
-              <GalleryHorizontalEnd size={16} /> View Gallery
+            <Button variant="secondary" asChild>
+              <Link href="/gallery">
+                <GalleryHorizontalEnd size={16} /> View Gallery
+              </Link>
             </Button>
             <a
               href="#video"
@@ -138,10 +127,10 @@ export default function MemorialHomepage() {
             <div className="relative z-10 h-full w-full overflow-hidden rounded-full bg-gradient-to-b from-white/10 to-white/5 ring-1 ring-white/10">
               <Image
                 alt="Portrait"
-                src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=1200&auto=format&fit=crop"
+                src={dadImage}
                 className="h-full w-full object-cover opacity-80 mix-blend-screen"
-                width={540}
-                height={540}
+                width={486}
+                height={486}
               />
             </div>
 
