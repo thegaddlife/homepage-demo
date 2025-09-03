@@ -62,6 +62,7 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
               alt="Eugene Gadd"
               className="aspect-[3/4] w-full object-cover opacity-90"
               style={{ objectPosition: "45% center" }}
+              priority
             />
           </motion.div>
 
