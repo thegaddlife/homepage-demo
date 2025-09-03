@@ -1,9 +1,13 @@
 "use client";
 
+import { MemorialContainer } from "@/components/layout/MemorialContainer";
+import { MemorialFooter } from "@/components/layout/MemorialFooter";
+import { MemorialLayout } from "@/components/layout/MemorialLayout";
+import { MemorialNav } from "@/components/layout/MemorialNav";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft,
   Calendar,
   Clock,
   HeartHandshake,
@@ -11,79 +15,13 @@ import {
   MessagesSquare,
 } from "lucide-react";
 
-function Button({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
-  href: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-3 text-sm font-medium tracking-wide text-white ring-1 ring-white/10 backdrop-blur-md transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-    >
-      {children}
-    </a>
-  );
-}
-
 export default function ObituaryPage() {
   return (
-    <div className="relative min-h-[100dvh] w-full overflow-hidden bg-neutral-950 text-neutral-200 antialiased">
-      {/* Background treatments */}
-      <div className="pointer-events-none absolute inset-0 [background:radial-gradient(90rem_90rem_at_50%_10%,rgba(255,255,255,0.06),transparent_60%),radial-gradient(40rem_40rem_at_10%_80%,rgba(255,255,255,0.05),transparent_60%),radial-gradient(30rem_30rem_at_90%_50%,rgba(255,255,255,0.05),transparent_60%)]" />
-      <svg
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern
-            id="dot"
-            width="24"
-            height="24"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="1" cy="1" r="1" fill="white" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#dot)" />
-      </svg>
-
-      {/* Header */}
-      <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3">
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-2 text-white/70 hover:text-white"
-          >
-            <span className="grid h-8 w-8 place-content-center rounded-full bg-white/5 ring-1 ring-white/20 transition group-hover:bg-white/10">
-              <ArrowLeft size={16} />
-            </span>
-            <span className="text-sm tracking-widest">HOME</span>
-          </Link>
-        </div>
-        <nav className="hidden gap-6 md:flex">
-          <Link className="text-sm text-white/70 hover:text-white" href="/">
-            Memorial
-          </Link>
-          <a className="text-sm text-white/70 hover:text-white" href="#gallery">
-            Gallery
-          </a>
-          <a className="text-sm text-white/70 hover:text-white" href="#service">
-            Service
-          </a>
-          <a
-            className="text-sm text-white/70 hover:text-white"
-            href="#guestbook"
-          >
-            Guestbook
-          </a>
-        </nav>
-      </header>
+    <MemorialLayout>
+      <MemorialNav variant="obituary" />
 
       {/* Title block */}
-      <section className="relative z-10 mx-auto max-w-6xl px-6 pt-2 md:pt-6">
+      <MemorialContainer className="pt-2 md:pt-6">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -91,15 +29,15 @@ export default function ObituaryPage() {
         >
           <p className="text-xs tracking-[0.25em] text-white/50">OBITUARY</p>
           <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-            Eugene “Gene” Gadd
+            Eugene “Gene” Wilfred Gadd
           </h1>
-          <p className="mt-2 text-base text-white/70">1949 — 2025</p>
+          <p className="mt-2 text-base text-white/70">1931 — 2012</p>
           <div className="mt-6 h-px w-28 bg-white/15" />
         </motion.div>
-      </section>
+      </MemorialContainer>
 
       {/* Content grid */}
-      <main className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-6 pt-8 pb-20 md:grid-cols-12">
+      <MemorialContainer className="grid w-full grid-cols-1 gap-10 pt-8 pb-20 md:grid-cols-12">
         {/* Obituary text */}
         <motion.article
           initial={{ opacity: 0, y: 8 }}
@@ -169,7 +107,9 @@ export default function ObituaryPage() {
               </div>
             </div>
             <div className="mt-4">
-              <Button href="#map">Open Map</Button>
+              <Button asChild>
+                <Link href="#map">Open Map</Link>
+              </Button>
             </div>
           </motion.div>
 
@@ -187,7 +127,9 @@ export default function ObituaryPage() {
               Your kindness continues his spirit of generosity.
             </p>
             <div className="mt-4 flex gap-3">
-              <Button href="#donate">Donate</Button>
+              <Button asChild>
+                <Link href="#donate">Donate</Link>
+              </Button>
               <a
                 href="#program"
                 className="inline-flex items-center rounded-2xl px-4 py-2 text-sm text-white/70 ring-1 ring-white/10 hover:bg-white/10"
@@ -210,17 +152,16 @@ export default function ObituaryPage() {
               Share a story, photo, or message for the family.
             </p>
             <div className="mt-4">
-              <Button href="#guestbook">Open Guestbook</Button>
+              <Button asChild>
+                <Link href="#guestbook">Open Guestbook</Link>
+              </Button>
             </div>
           </motion.div>
         </aside>
-      </main>
+      </MemorialContainer>
 
       {/* Optional photo strip */}
-      <section
-        id="gallery"
-        className="relative z-10 mx-auto mb-16 max-w-6xl px-6"
-      >
+      <MemorialContainer id="gallery" className="mb-16">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[
             "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
@@ -244,25 +185,9 @@ export default function ObituaryPage() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </MemorialContainer>
 
-      {/* Footer */}
-      <footer className="relative z-10 mx-auto max-w-6xl px-6 pb-12">
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} The Gadd Family
-          </p>
-          <div className="flex items-center gap-4 text-xs text-white/50">
-            <a href="#privacy" className="hover:text-white/80">
-              Privacy
-            </a>
-            <span className="opacity-40">•</span>
-            <a href="#contact" className="hover:text-white/80">
-              Contact
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <MemorialFooter variant="obituary" />
+    </MemorialLayout>
   );
 }

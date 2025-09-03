@@ -1,6 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { MemorialLayout } from "@/components/layout/MemorialLayout";
+import { MemorialNav } from "@/components/layout/MemorialNav";
+import { MemorialFooter } from "@/components/layout/MemorialFooter";
+import { MemorialContainer } from "@/components/layout/MemorialContainer";
 import dadImage from "@/images/dad-cropped.jpg";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,58 +13,11 @@ import { BookOpen, GalleryHorizontalEnd, Play } from "lucide-react";
 
 export default function MemorialHomepage() {
   return (
-    <div className="relative min-h-[100dvh] w-full overflow-hidden bg-neutral-950 text-neutral-200 antialiased">
-      {/* Soft radial vignette + subtle grid */}
-      <div className="pointer-events-none absolute inset-0 [background:radial-gradient(90rem_90rem_at_50%_10%,rgba(255,255,255,0.06),transparent_60%),radial-gradient(40rem_40rem_at_10%_80%,rgba(255,255,255,0.05),transparent_60%),radial-gradient(30rem_30rem_at_90%_50%,rgba(255,255,255,0.05),transparent_60%)]" />
-      <svg
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern
-            id="dot"
-            width="24"
-            height="24"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="1" cy="1" r="1" fill="white" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#dot)" />
-      </svg>
-
-      {/* Top Nav */}
-      <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-full bg-white/10 ring-1 ring-white/20" />
-          <span className="text-sm tracking-widest text-white/70">
-            IN LOVING MEMORY
-          </span>
-        </div>
-        <nav className="hidden gap-6 md:flex">
-          <Link
-            className="text-sm text-white/70 hover:text-white"
-            href="/obituary"
-          >
-            Obituary
-          </Link>
-          <a className="text-sm text-white/70 hover:text-white" href="#gallery">
-            Gallery
-          </a>
-          <a className="text-sm text-white/70 hover:text-white" href="#service">
-            Service
-          </a>
-          <a
-            className="text-sm text-white/70 hover:text-white"
-            href="#guestbook"
-          >
-            Guestbook
-          </a>
-        </nav>
-      </header>
+    <MemorialLayout>
+      <MemorialNav variant="home" />
 
       {/* Hero */}
-      <main className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-6 pt-8 md:grid-cols-12 md:pt-14">
+      <MemorialContainer className="grid w-full grid-cols-1 items-center gap-12 pt-8 md:grid-cols-12 md:pt-14">
         {/* Left text block */}
         <motion.section
           initial={{ opacity: 0, y: 10 }}
@@ -131,16 +88,9 @@ export default function MemorialHomepage() {
             <div className="absolute -inset-6 -z-0 rounded-full blur-3xl [background:radial-gradient(35rem_35rem_at_50%_60%,rgba(255,255,255,0.16),transparent_60%)]" />
           </div>
         </motion.section>
-      </main>
+      </MemorialContainer>
 
-      {/* Footer */}
-      <footer className="relative z-10 mx-auto max-w-6xl px-6 pt-28 pb-12">
-        <div className="flex justify-center">
-          <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} Built with ❤️ by his family
-          </p>
-        </div>
-      </footer>
-    </div>
+      <MemorialFooter variant="home" />
+    </MemorialLayout>
   );
 }
