@@ -1,14 +1,30 @@
+"use client";
+
+import twemoji from "twemoji";
+import { useEffect, useRef } from "react";
+
 interface MemorialFooterProps {
   variant?: "home" | "obituary";
 }
 
 export function MemorialFooter({ variant = "home" }: MemorialFooterProps) {
+  const heartRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (heartRef.current) {
+      heartRef.current.innerHTML = twemoji.parse("💙", {
+        folder: "svg",
+        ext: ".svg",
+      });
+    }
+  }, []);
+
   return (
     <footer className="relative z-10 mx-auto max-w-6xl px-6 pb-12">
       {variant === "home" ? (
         <div className="flex justify-center pt-28">
           <p className="text-xs text-white/50">
-            Built with 💙 by his family in {new Date().getFullYear()}
+            Built with <span ref={heartRef} className="inline-block h-3 w-3"></span> by his family in {new Date().getFullYear()}
           </p>
         </div>
       ) : (

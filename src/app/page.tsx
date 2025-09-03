@@ -50,15 +50,19 @@ export default function MemorialHomepage() {
             lived.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button variant="secondary" asChild>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <Button
+              variant="secondary"
+              asChild
+              className="w-full py-6 sm:w-auto"
+            >
               <Link href="/obituary">
                 <BookOpen size={16} /> Read Obituary
               </Link>
             </Button>
             <Button
               variant="secondary"
-              className="cursor-pointer"
+              className="w-full cursor-pointer py-6 sm:w-auto"
               onClick={() => setOpen(true)}
             >
               <Play size={16} /> Watch Tribute Reel
