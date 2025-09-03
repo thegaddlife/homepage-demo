@@ -52,8 +52,11 @@ export function MemorialNav({ variant = "home" }: MemorialNavProps) {
           </>
         ) : (
           <>
-            <Link className="text-sm text-white/70 hover:text-white" href="/">
-              Memorial
+            <Link
+              className="relative text-sm text-white hover:text-white after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-gradient-to-r after:from-transparent after:via-white/40 after:to-transparent"
+              href="/obituary"
+            >
+              Obituary
             </Link>
             <a className="text-sm text-white/70 hover:text-white" href="#gallery">
               Gallery
