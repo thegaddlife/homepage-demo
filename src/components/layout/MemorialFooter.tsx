@@ -8,7 +8,7 @@ export function MemorialFooter({ variant = "home" }: MemorialFooterProps) {
       {variant === "home" ? (
         <div className="flex justify-center pt-28">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} Built with ❤️ by his family
+            Built with 💙 by his family in {new Date().getFullYear()}
           </p>
         </div>
       ) : (
