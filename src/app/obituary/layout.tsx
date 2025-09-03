@@ -139,7 +139,7 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
         </div>
       </MemorialContainer>
 
-      <MemorialFooter variant="obituary" />
+      <MemorialFooter />
     </MemorialLayout>
   );
 }

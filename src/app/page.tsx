@@ -133,7 +133,7 @@ export default function MemorialHomepage() {
         </div>
       )}
 
-      <MemorialFooter variant="home" />
+      <MemorialFooter />
     </MemorialLayout>
   );
 }

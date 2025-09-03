@@ -71,7 +71,7 @@ export default function NotFound() {
         </motion.section>
       </MemorialContainer>
 
-      <MemorialFooter variant="home" />
+      <MemorialFooter />
     </MemorialLayout>
   );
 }
