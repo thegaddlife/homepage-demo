@@ -60,10 +60,11 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
             <Image
               src={dadImage4}
               alt="Eugene Gadd"
-              className="h-48 w-full object-cover opacity-90"
+              className="aspect-[3/4] w-full object-cover opacity-90"
+              style={{ objectPosition: "45% center" }}
             />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
