@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Providers } from "./providers";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -14,8 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next 15 Template",
-  description: "Good starter for Next.js 15",
+  title: "Eugene Gadd",
+  description: "Eugene Gadd",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 };
 
 export default function RootLayout({
@@ -26,9 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${geistMono.variable} bg-zinc-100 font-sans antialiased dark:bg-slate-900`}
+        className={`${geist.variable} ${geistMono.variable} bg-neutral-950 font-sans antialiased`}
       >
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );

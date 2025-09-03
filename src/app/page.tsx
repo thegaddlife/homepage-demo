@@ -38,12 +38,14 @@ export default function MemorialHomepage() {
           transition={{ duration: 0.8 }}
           className="order-2 md:order-1 md:col-span-5"
         >
-          <h1 className="text-5xl font-extrabold tracking-tight text-white md:text-6xl">
+          <h1 className="text-center text-5xl font-extrabold tracking-tight text-white md:text-left md:text-6xl">
             Eugene &quot;Gene&quot; Wilfred Gadd
           </h1>
-          <p className="mt-3 text-lg text-white/70">1931 — 2012</p>
-          <div className="mt-6 h-px w-28 bg-white/15" />
-          <p className="mt-6 max-w-md text-balance text-white/70">
+          <p className="mt-3 text-center text-lg text-white/70 md:text-left">
+            1931 — 2012
+          </p>
+          <div className="mx-auto mt-6 h-px w-28 bg-white/15 md:mx-0" />
+          <p className="mt-6 max-w-md text-center text-balance text-white/70 md:text-left">
             A beloved father, husband, grandfather, and friend whose warmth,
             protection, and steady kindness shaped every room he entered. This
             page collects memories, photos, and details to celebrate a life well
@@ -75,7 +77,7 @@ export default function MemorialHomepage() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="order-1 md:order-2 relative md:col-span-7"
+          className="relative order-1 md:order-2 md:col-span-7"
         >
           <div className="relative mx-auto aspect-square w-full max-w-[486px]">
             {/* Rings */}
