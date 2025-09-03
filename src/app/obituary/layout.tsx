@@ -4,6 +4,11 @@ import { MemorialContainer } from "@/components/layout/MemorialContainer";
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import { MemorialNav } from "@/components/layout/MemorialNav";
+import dadImage1 from "@/images/obituary/dad-1.jpg";
+import dadImage2 from "@/images/obituary/dad-2.jpg";
+import dadImage3 from "@/images/obituary/dad-3.jpg";
+import dadImage4 from "@/images/obituary/dad-4.jpg";
+import dadImage5 from "@/images/obituary/dad-5.jpg";
 import { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -46,6 +51,19 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
 
         {/* Sidebar cards */}
         <aside className="space-y-4 md:col-span-4">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="overflow-hidden rounded-2xl border border-white/10 bg-white/5"
+          >
+            <Image
+              src={dadImage4}
+              alt="Eugene Gadd"
+              className="h-48 w-full object-cover opacity-90"
+            />
+          </motion.div>
+          
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,14 +116,9 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
       {/* Optional photo strip */}
       <MemorialContainer id="gallery" className="mb-16">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          {[
-            "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1504051771394-dd2e66b2e08f?q=80&w=1200&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=1200&auto=format&fit=crop",
-            "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=1200&auto=format&fit=crop",
-          ].map((src, i) => (
+          {[dadImage1, dadImage2, dadImage3, dadImage5].map((src, i) => (
             <motion.div
-              key={src}
+              key={src.src}
               initial={{ opacity: 0, y: 6 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
