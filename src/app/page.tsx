@@ -36,7 +36,7 @@ export default function MemorialHomepage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="md:col-span-5"
+          className="order-2 md:order-1 md:col-span-5"
         >
           <h1 className="text-5xl font-extrabold tracking-tight text-white md:text-6xl">
             Eugene &quot;Gene&quot; Wilfred Gadd
@@ -75,7 +75,7 @@ export default function MemorialHomepage() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="relative md:col-span-7"
+          className="order-1 md:order-2 relative md:col-span-7"
         >
           <div className="relative mx-auto aspect-square w-full max-w-[486px]">
             {/* Rings */}
