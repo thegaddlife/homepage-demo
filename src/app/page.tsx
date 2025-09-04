@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BookOpen, Play } from "lucide-react";
+import { BookOpen, Heart, Play } from "lucide-react";
 
 export default function MemorialHomepage() {
   const [open, setOpen] = useState(false);
@@ -52,23 +52,29 @@ export default function MemorialHomepage() {
             lived.
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-8 flex max-w-96 flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <Button
-              variant="secondary"
               asChild
-              className="w-full py-6 sm:w-auto"
+              variant="secondary"
+              className="w-full py-6 sm:w-full"
             >
-              <Link href="/obituary">
-                <BookOpen size={16} /> Read Obituary
+              <Link href="/memories">
+                <Heart size={16} /> Gene&apos;s Memories
               </Link>
             </Button>
-            <Button
-              variant="secondary"
-              className="w-full cursor-pointer py-6 sm:w-auto"
-              onClick={() => setOpen(true)}
-            >
-              <Play size={16} /> Watch Tribute Reel
-            </Button>
+            <div className="flex w-full flex-col gap-4 sm:flex-row sm:gap-4">
+              <Button asChild className="w-full py-6 sm:flex-1">
+                <Link href="/obituary">
+                  <BookOpen size={16} /> Read Obituary
+                </Link>
+              </Button>
+              <Button
+                className="w-full cursor-pointer py-6 sm:flex-1"
+                onClick={() => setOpen(true)}
+              >
+                <Play size={16} /> Watch Tribute Reel
+              </Button>
+            </div>
           </div>
         </motion.section>
 
@@ -92,8 +98,8 @@ export default function MemorialHomepage() {
                 src={dadImage}
                 className="h-full w-full object-cover opacity-80 mix-blend-screen grayscale"
                 style={{ objectPosition: "center 10%" }}
-                width={486}
-                height={486}
+                width={972}
+                height={972}
                 priority
               />
             </div>
