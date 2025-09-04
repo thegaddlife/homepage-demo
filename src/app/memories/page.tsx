@@ -183,17 +183,28 @@ export default function MemoriesPage() {
       <MemorialNav variant="memories" />
 
       <MemorialContainer>
-        <div className="mb-6">
+        <div className="mb-8">
+          <div className="mb-4 flex items-center gap-3">
+            <BookOpen className="h-8 w-8 text-white/60" />
+            <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+          </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
             My Memories
           </h1>
           <p className="mt-2 text-base text-white/70">By Eugene W. Gadd</p>
-          <p className="mt-1 text-sm text-white/60">
-            Originally finished in 1998 • 2nd Edition 2025
-          </p>
-          <p className="mt-4 max-w-2xl text-white/70">
-            Browse the chapters below. Click a card to begin reading.
-          </p>
+          <div className="mt-2 flex items-center gap-2 text-sm text-white/60">
+            <div className="h-1 w-1 rounded-full bg-white/40" />
+            <span>Originally finished in 1998</span>
+            <div className="h-1 w-1 rounded-full bg-white/40" />
+            <span>2nd Edition 2025</span>
+          </div>
+          <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+            <p className="text-white/70">
+              Browse the chapters below. Click a card to begin reading this
+              collection of memories spanning eight decades of life, love, and
+              legacy.
+            </p>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {chapters.map((ch, i) => (
