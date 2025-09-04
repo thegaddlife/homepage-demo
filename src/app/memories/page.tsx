@@ -2,25 +2,14 @@ import { MemorialContainer } from "@/components/layout/MemorialContainer";
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import { MemorialNav } from "@/components/layout/MemorialNav";
-import {
-  getMarkdownFiles,
-  getMarkdownFromSlug,
-  getPostInformation,
-} from "@/lib/file";
-import { Post } from "@/types";
+import { getMarkdownFromSlug } from "@/lib/file";
+import { getMemoriesSorted } from "@/lib/memories-utils";
 import { BookOpen } from "lucide-react";
 import { readingTime } from "reading-time-estimator";
 import { MemoryCard } from "./components/memory-card";
 
 export default async function MemoriesPage() {
-  const files = getMarkdownFiles();
-  console.log(files[0]);
-  const memoriesFilter = (f: string) => f.includes("memories");
-
-  const posts = files
-    .filter(memoriesFilter)
-    .map(getPostInformation)
-    .filter((post): post is Post => post !== undefined);
+  const sortedPosts = getMemoriesSorted();
 
   return (
     <MemorialLayout>
@@ -51,16 +40,16 @@ export default async function MemoriesPage() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map(async (ch, i) => {
-            const result = await getMarkdownFromSlug(ch.slug);
+          {sortedPosts.map(async (chapter, i) => {
+            const result = await getMarkdownFromSlug(chapter.slug);
             if (!result || !result.source) {
               return null;
             }
             const timeToRead = readingTime(result.source, 100).text;
             return (
               <MemoryCard
-                key={ch.slug}
-                chapter={ch}
+                key={chapter.slug}
+                chapter={chapter}
                 i={i}
                 timeToRead={timeToRead}
               />

@@ -21,7 +21,7 @@ export const getSourceSync = (filename: string): string | undefined => {
 };
 
 /**
- * get the markdown file list
+ * recursively get the markdown files list from the mdx-data directory
  */
 export const getMarkdownFiles = (): string[] => {
   const mdxDataPath = path.join(process.cwd(), "mdx-data");

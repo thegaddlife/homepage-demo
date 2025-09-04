@@ -5,7 +5,6 @@ export type Frontmatter = {
   date: Date;
   summary: string;
   thumbnail: string;
-  readTime: number;
 };
 
 export type Post = Frontmatter & { slug: string };
