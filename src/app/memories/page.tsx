@@ -2,18 +2,21 @@ import { MemorialContainer } from "@/components/layout/MemorialContainer";
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import { MemorialNav } from "@/components/layout/MemorialNav";
-import { getMarkdownFiles, getPostInformation } from "@/lib/file";
+import {
+  getMarkdownFiles,
+  getMarkdownFromSlug,
+  getPostInformation,
+} from "@/lib/file";
 import { Post } from "@/types";
-import Image from "next/image";
-import Link from "next/link";
 import { BookOpen } from "lucide-react";
+import { readingTime } from "reading-time-estimator";
+import { MemoryCard } from "./components/memory-card";
 
 export default async function MemoriesPage() {
   const files = getMarkdownFiles();
   console.log(files[0]);
   const memoriesFilter = (f: string) => f.includes("memories");
 
-  // "getPostInformation" uses "getFrontmatter" utility without compiling the source !
   const posts = files
     .filter(memoriesFilter)
     .map(getPostInformation)
@@ -48,43 +51,21 @@ export default async function MemoriesPage() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((ch, i) => (
-            <Link
-              key={ch.slug}
-              href={`/memories/${ch.slug}`}
-              className="group overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10 transition hover:bg-white/10"
-            >
-              {/* 16:9 thumbnail without aspect-ratio plugin */}
-              <div className="relative w-full pt-[56.25%]">
-                <Image
-                  src={ch.thumbnail}
-                  alt={ch.title}
-                  className="absolute inset-0 h-full w-full object-cover opacity-90 grayscale transition duration-300 group-hover:scale-[1.03] group-hover:grayscale-25"
-                  width={320}
-                  height={240}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                <div className="absolute right-0 bottom-0 left-0 p-4">
-                  <div className="text-xs text-white/70">
-                    {i > 1 ? `Chapter ${i - 1}` : ""}
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">
-                    {ch.title}
-                  </h3>
-                  {ch.subtitle && (
-                    <p className="text-sm text-white/60">{ch.subtitle}</p>
-                  )}
-                </div>
-              </div>
-              <div className="p-4 text-sm text-white/70">{ch.summary}</div>
-              <div className="flex items-center justify-between px-4 pb-4 text-xs text-white/60">
-                <span className="inline-flex items-center gap-2">
-                  <BookOpen className="h-4 w-4" /> {ch.readTime} min read
-                </span>
-                <span className="opacity-60">Read →</span>
-              </div>
-            </Link>
-          ))}
+          {posts.map(async (ch, i) => {
+            const result = await getMarkdownFromSlug(ch.slug);
+            if (!result || !result.source) {
+              return null;
+            }
+            const timeToRead = readingTime(result.source, 100).text;
+            return (
+              <MemoryCard
+                key={ch.slug}
+                chapter={ch}
+                i={i}
+                timeToRead={timeToRead}
+              />
+            );
+          })}
         </div>
       </MemorialContainer>
 

@@ -67,7 +67,7 @@ export const getMarkdownFromSlug = async (
   // replace the last dash with dot in the slug for filename
   const filename = slug.replace(/-(?=[^-]*$)/, ".") as `${string}.mdx`;
 
-  const fullPath = path.join(process.cwd(), "data", filename);
+  const fullPath = path.join(process.cwd(), "mdx-data", filename);
 
   if (fs.existsSync(fullPath)) {
     const source = await getSource(filename);
