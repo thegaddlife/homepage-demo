@@ -2,9 +2,8 @@
 
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
-import { chapters, getCurrentChapter } from "@/lib/chapter-utils";
 import { getMarkdownFiles, getMarkdownFromSlug } from "@/lib/file";
-import { notFound, usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export default async function MemoriesPartsLayout({
   params,
@@ -16,10 +15,6 @@ export default async function MemoriesPartsLayout({
   if (!result) {
     return notFound();
   }
-
-  const pathname = usePathname();
-  const chapter = getCurrentChapter(pathname);
-  const idx = chapters.findIndex((c) => c.slug === chapter?.slug);
 
   return (
     <MemorialLayout>

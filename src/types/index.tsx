@@ -1,15 +1,15 @@
 export type Frontmatter = {
   title: string;
+  subtitle: string;
   author: string;
   date: Date;
   summary: string;
+  thumbnail: string;
+  readTime: number;
 };
 
 export type Post = Frontmatter & { slug: string };
 
 export type Scope = {
   readingTime: string;
-  props?: {
-    foo: string;
-  };
 };

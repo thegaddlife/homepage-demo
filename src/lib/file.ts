@@ -9,13 +9,13 @@ export const RE = /\.mdx?$/; // Only .md(x) files
 export const getSource = async (
   filename: string
 ): Promise<string | undefined> => {
-  const sourcePath = path.join(process.cwd(), "data", filename);
+  const sourcePath = path.join(process.cwd(), "mdx-data", filename);
   if (!fs.existsSync(sourcePath)) return;
   return await fs.promises.readFile(sourcePath, "utf8");
 };
 
 export const getSourceSync = (filename: string): string | undefined => {
-  const sourcePath = path.join(process.cwd(), "data", filename);
+  const sourcePath = path.join(process.cwd(), "mdx-data", filename);
   if (!fs.existsSync(sourcePath)) return;
   return fs.readFileSync(sourcePath, "utf8");
 };
@@ -24,9 +24,31 @@ export const getSourceSync = (filename: string): string | undefined => {
  * get the markdown file list
  */
 export const getMarkdownFiles = (): string[] => {
-  return fs
-    .readdirSync(path.join(process.cwd(), "data"))
-    .filter((filePath: string) => RE.test(filePath));
+  const mdxDataPath = path.join(process.cwd(), "mdx-data");
+
+  const getAllMarkdownFiles = (dir: string): string[] => {
+    const files: string[] = [];
+    const items = fs.readdirSync(dir);
+
+    for (const item of items) {
+      const fullPath = path.join(dir, item);
+      const stat = fs.statSync(fullPath);
+
+      if (stat.isDirectory()) {
+        // Recursively search subdirectories
+        const subFiles = getAllMarkdownFiles(fullPath);
+        files.push(...subFiles);
+      } else if (RE.test(item)) {
+        // Get relative path from mdx-data directory
+        const relativePath = path.relative(mdxDataPath, fullPath);
+        files.push(relativePath);
+      }
+    }
+
+    return files;
+  };
+
+  return getAllMarkdownFiles(mdxDataPath);
 };
 
 /**
