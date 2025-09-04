@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 interface MemorialNavProps {
-  variant?: "home" | "obituary";
+  variant?: "home" | "obituary" | "memories";
 }
 
 export function MemorialNav({ variant = "home" }: MemorialNavProps) {
