@@ -41,7 +41,7 @@ export function ChapterNavigation() {
             >
               {chapters.map((c, i) => (
                 <option key={c.slug} value={c.slug} className="bg-neutral-900">
-                  {`Chapter ${i + 1} — ${c.title}`}
+                  {i > 1 ? `Chapter ${i - 1} — ${c.title}` : c.title}
                 </option>
               ))}
             </select>
