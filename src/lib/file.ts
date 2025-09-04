@@ -62,10 +62,8 @@ export const getMarkdownFromSlug = async (
     }
   | undefined
 > => {
-  if (!/-mdx?$/.test(slug)) return;
-
-  // replace the last dash with dot in the slug for filename
-  const filename = slug.replace(/-(?=[^-]*$)/, ".") as `${string}.mdx`;
+  // convert slug back to filename by adding .mdx extension
+  const filename = `${slug}.mdx`;
 
   const fullPath = path.join(process.cwd(), "mdx-data", filename);
 
@@ -93,7 +91,7 @@ export const getPostInformation = (filename: string): Post | undefined => {
   const post: Post = {
     ...frontmatter,
     // replace the last dot with dash in the filename for slug
-    slug: filename.replace(/\.(?=[^.]*$)/, "-"),
+    slug: filename.replace(/\.mdx?$/, ""),
   };
 
   return post;
