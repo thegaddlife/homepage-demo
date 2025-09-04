@@ -16,11 +16,20 @@ type Chapter = {
 
 const chapters: Chapter[] = [
   {
-    slug: "intro-dedication",
-    title: "Introduction & Dedication",
+    slug: "dedication",
+    title: "Dedication",
     subtitle: "A note of love and purpose",
     summary:
-      "Setting the tone for the memories ahead and dedicating this collection to the people who shaped a life well lived.",
+      "Dedicating this collection to the people who have brought joy to my life.",
+    thumbnail:
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&h=675&q=80",
+    readTime: 1,
+  },
+  {
+    slug: "introduction",
+    title: "Introduction",
+    subtitle: "Wilfred's oldest son",
+    summary: "My name is Eugene 'Gene' Wilfred Gadd and this is my story.",
     thumbnail:
       "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1200&h=675&q=80",
     readTime: 1,
@@ -225,7 +234,7 @@ export default function MemoriesPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
                 <div className="absolute right-0 bottom-0 left-0 p-4">
                   <div className="text-xs text-white/70">
-                    {i > 0 ? `Chapter ${i + 1}` : ""}
+                    {i > 1 ? `Chapter ${i - 1}` : ""}
                   </div>
                   <h3 className="text-lg font-semibold text-white">
                     {ch.title}
