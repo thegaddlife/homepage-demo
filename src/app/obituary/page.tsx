@@ -9,12 +9,11 @@ import dadImage2 from "@/images/obituary/dad-2.jpg";
 import dadImage3 from "@/images/obituary/dad-3.jpg";
 import dadImage4 from "@/images/obituary/dad-4.jpg";
 import dadImage5 from "@/images/obituary/dad-5.jpg";
-import { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, Clock, HeartHandshake, MapPin } from "lucide-react";
 
-export default function ObituaryPage({ children }: { children: ReactNode }) {
+export default function ObituaryPage() {
   return (
     <MemorialLayout>
       <MemorialNav variant="obituary" />
@@ -45,7 +44,7 @@ export default function ObituaryPage({ children }: { children: ReactNode }) {
           className="md:col-span-8"
         >
           <div className="space-y-6 leading-relaxed text-white/80">
-            {children}
+            TODO: content here
           </div>
         </motion.article>
 
