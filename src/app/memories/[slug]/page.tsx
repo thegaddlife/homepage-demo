@@ -1,8 +1,11 @@
-"use client";
-
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
-import { getMarkdownFiles, getMarkdownFromSlug } from "@/lib/file";
+import {
+  getMarkdownFiles,
+  getMarkdownFromSlug,
+  getPostInformation,
+} from "@/lib/file";
+import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { notFound } from "next/navigation";
 
 export default async function MemoriesPartsLayout({
@@ -10,11 +13,14 @@ export default async function MemoriesPartsLayout({
 }: {
   params: { slug: string };
 }) {
+  const chapter = await getPostInformation(params.slug);
   const result = await getMarkdownFromSlug(params.slug);
 
   if (!result) {
     return notFound();
   }
+
+  const idx = 1;
 
   return (
     <MemorialLayout>
@@ -34,7 +40,7 @@ export default async function MemoriesPartsLayout({
       </section>
       <main className="relative z-10 mx-auto max-w-3xl px-6 pt-8 pb-24">
         <article className="space-y-6 leading-relaxed text-white/80">
-          TODO: content here
+          <MDXRemote source={result.source} />
         </article>
       </main>
       <MemorialFooter />

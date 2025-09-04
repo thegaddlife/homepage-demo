@@ -24,7 +24,7 @@ export const MemoryCard = ({
     >
       <Link
         key={chapter.slug}
-        href={`/memories/${chapter.slug}`}
+        href={chapter.slug}
         className="group overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10 transition hover:bg-white/10"
       >
         {/* 16:9 thumbnail without aspect-ratio plugin */}
