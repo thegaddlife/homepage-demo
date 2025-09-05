@@ -72,7 +72,7 @@ export default function TimelinePage() {
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex items-start">
                 {/* Timeline dot */}
-                <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
+                <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-sky-600"></div>
 
                 {/* Horizontal line from dot to date bubble center */}
                 <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-300"></div>
@@ -88,7 +88,7 @@ export default function TimelinePage() {
 
                   {/* Combined avatar and name bubble */}
                   <div className="relative flex items-center rounded-full bg-white py-3 pr-4 pl-18 shadow-sm">
-                    <div className="absolute inset-0 h-16 w-16 overflow-hidden rounded-full bg-gray-300">
+                    <div className="absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full bg-gray-300">
                       {item.image ? (
                         <Image
                           src={item.image}
@@ -101,7 +101,7 @@ export default function TimelinePage() {
                         <div className="h-full w-full rounded-full bg-gray-400"></div>
                       )}
                     </div>
-                    <div>
+                    <div className="flex items-center">
                       <span className="text-sm font-medium text-gray-800">
                         {item.name}
                       </span>
