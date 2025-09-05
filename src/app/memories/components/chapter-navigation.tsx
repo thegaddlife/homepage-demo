@@ -1,15 +1,19 @@
 "use client";
 
-import { getAdjacentChapters, getCurrentChapter } from "@/lib/chapter-utils";
-import { chapters } from "@/lib/chapter-utils";
+import { Post } from "@/types";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, Home, List } from "lucide-react";
 
-export function ChapterNavigation() {
-  const pathname = usePathname();
-  const chapter = getCurrentChapter(pathname);
-  const { previous, next } = getAdjacentChapters(pathname);
+export function ChapterNavigation({
+  chapters,
+  chapter,
+}: {
+  chapters: Post[];
+  chapter: Post;
+}) {
+  const idx = chapters.findIndex((c) => c.slug === chapter.slug);
+  const previous = chapters[idx - 1];
+  const next = chapters[idx + 1];
 
   return (
     <div className="fixed inset-x-0 top-0 z-50">
@@ -35,7 +39,7 @@ export function ChapterNavigation() {
               id="chapter-select"
               value={chapter?.slug}
               onChange={(e) =>
-                (window.location.href = `/memories/${e.currentTarget.value}`)
+                (window.location.href = `/${e.currentTarget.value}`)
               }
               className="rounded-xl bg-white/5 px-3 py-2 text-white/90 ring-1 ring-white/10 hover:bg-white/10 focus:outline-none"
             >
@@ -50,7 +54,7 @@ export function ChapterNavigation() {
           <div className="flex items-center gap-2">
             <Link
               aria-disabled={!previous}
-              href={previous ? `/memories/${previous.slug}` : "#"}
+              href={previous ? `/${previous.slug}` : "#"}
               className={`inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm ring-1 ring-white/10 ${
                 previous
                   ? "text-white/90 hover:bg-white/10"
@@ -61,7 +65,7 @@ export function ChapterNavigation() {
             </Link>
             <Link
               aria-disabled={!next}
-              href={next ? `/memories/${next.slug}` : "#"}
+              href={next ? `/${next.slug}` : "#"}
               className={`inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm ring-1 ring-white/10 ${
                 next
                   ? "text-white/90 hover:bg-white/10"

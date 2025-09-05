@@ -7,10 +7,13 @@ import {
   getPostInformation,
 } from "@/lib/file";
 import { plugins } from "@/lib/mdx";
+import { getMemoriesSorted } from "@/lib/memories-utils";
 import { components } from "@/mdxComponents";
 import { MDXRemote, MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import { notFound } from "next/navigation";
 import { readingTime } from "reading-time-estimator";
+import { ChapterFooterNavigation } from "../components/chapter-footer-navigation";
+import { ChapterNavigation } from "../components/chapter-navigation";
 
 export default async function MemoriesPartsLayout({
   params,
@@ -21,11 +24,17 @@ export default async function MemoriesPartsLayout({
   const chapter = await getPostInformation(`memories/${slug}.mdx`);
   const result = await getMarkdownFromSlug(`memories/${slug}`);
 
+  if (!chapter) {
+    return notFound();
+  }
+
   if (!result) {
     return notFound();
   }
 
-  const idx = 1;
+  const chapters = getMemoriesSorted();
+
+  const idx = chapters.findIndex((c) => c.slug === chapter.slug);
 
   const options: MDXRemoteOptions = {
     disableImports: true, // import statements in MDX don't work in pages router
@@ -42,6 +51,7 @@ export default async function MemoriesPartsLayout({
 
   return (
     <MemorialLayout>
+      <ChapterNavigation chapters={chapters} chapter={chapter} />
       <div className="h-24" />
       {/* Hero */}
       <section className="relative z-10 mx-auto max-w-6xl px-6 pt-6 text-center">
@@ -65,6 +75,7 @@ export default async function MemoriesPartsLayout({
             onError={ErrorComponent}
           />
         </article>
+        <ChapterFooterNavigation chapters={chapters} chapter={chapter} />
       </main>
       <MemorialFooter />
     </MemorialLayout>
