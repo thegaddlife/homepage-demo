@@ -88,8 +88,8 @@ export const FamilyTimeline = () => {
                 </div>
 
                 {/* Combined avatar and name bubble - dark background */}
-                <div className="relative flex items-center rounded-full border border-gray-700 bg-gray-800 py-3 pr-4 pl-18 shadow-lg">
-                  <div className="absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full bg-gray-600">
+                <div className="relative flex items-center rounded-full border border-gray-700 bg-sky-950 py-3 pr-4 pl-18 shadow-lg">
+                  <div className="absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full border-3 border-sky-950 bg-gray-600">
                     {item.image ? (
                       <Image
                         src={item.image}
