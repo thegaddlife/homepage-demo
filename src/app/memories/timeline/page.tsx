@@ -77,6 +77,9 @@ export default function TimelinePage() {
                 {item.side === "left" ? (
                   // Left side layout
                   <>
+                    {/* Horizontal line from dot to center of date bubble */}
+                    <div className="absolute left-1/2 z-0 h-0.5 bg-gray-300" style={{width: 'calc(25% + 2rem)'}}></div>
+                    
                     <div className="flex w-1/2 justify-end pr-8">
                       <div className="flex items-center space-x-4">
                         <div className="text-right">
@@ -105,7 +108,7 @@ export default function TimelinePage() {
                       </div>
                     </div>
                     <div className="w-1/2 pl-8">
-                      <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
+                      <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
                         <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
                           {item.date}
                         </span>
@@ -115,8 +118,11 @@ export default function TimelinePage() {
                 ) : (
                   // Right side layout
                   <>
+                    {/* Horizontal line from dot to center of date bubble */}
+                    <div className="absolute right-1/2 z-0 h-0.5 bg-gray-300" style={{width: 'calc(25% + 2rem)'}}></div>
+                    
                     <div className="flex w-1/2 justify-end pr-8">
-                      <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
+                      <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
                         <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
                           {item.date}
                         </span>
