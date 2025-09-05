@@ -66,30 +66,30 @@ export const FamilyTimeline = () => {
     <div className="mx-auto max-w-4xl">
       <div className="relative">
         {/* Left-aligned timeline line */}
-        <div className="absolute left-4 h-full w-0.5 bg-gray-300"></div>
+        <div className="absolute left-4 h-full w-0.5 bg-gray-600"></div>
 
         {/* Timeline items */}
         <div className="space-y-8">
           {timelineData.map((item, index) => (
             <div key={index} className="relative flex items-start">
               {/* Timeline dot */}
-              <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-sky-700"></div>
+              <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-300"></div>
 
               {/* Horizontal line from dot to date bubble center */}
-              <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-300"></div>
+              <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600"></div>
 
               {/* Content area */}
               <div className="ml-12 space-y-4">
-                {/* Date bubble - aligned with dot */}
-                <div className="relative z-10 mt-2 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                  <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
+                {/* Date bubble - no background, smaller text, light border */}
+                <div className="relative z-10 mt-2 inline-block rounded-full border border-gray-400 bg-neutral-800 px-4 py-2">
+                  <span className="text-xs font-medium tracking-wide text-gray-300 uppercase">
                     {item.date}
                   </span>
                 </div>
 
-                {/* Combined avatar and name bubble */}
-                <div className="relative flex items-center rounded-full bg-white py-3 pr-4 pl-18 shadow-sm">
-                  <div className="absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full bg-gray-300">
+                {/* Combined avatar and name bubble - dark background */}
+                <div className="relative flex items-center rounded-full border border-gray-700 bg-gray-800 py-3 pr-4 pl-18 shadow-lg">
+                  <div className="absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full bg-gray-600">
                     {item.image ? (
                       <Image
                         src={item.image}
@@ -99,14 +99,14 @@ export const FamilyTimeline = () => {
                         className="h-full w-full object-cover"
                       />
                     ) : (
-                      <div className="h-full w-full rounded-full bg-gray-400"></div>
+                      <div className="h-full w-full rounded-full bg-gray-500"></div>
                     )}
                   </div>
                   <div className="flex items-center">
-                    <span className="text-sm font-medium text-gray-800">
+                    <span className="text-sm font-medium text-gray-100">
                       {item.name}
                     </span>
-                    <span className="ml-1 text-sm font-normal text-gray-600 italic">
+                    <span className="ml-1 text-sm font-normal text-gray-300 italic">
                       {item.action}
                     </span>
                   </div>
