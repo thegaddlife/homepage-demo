@@ -40,7 +40,7 @@ export default async function MemoriesPartsLayout({
     disableImports: true, // import statements in MDX don't work in pages router
     parseFrontmatter: true,
     scope: {
-      readingTime: readingTime(result.source, 100).text,
+      readingTime: readingTime(result.source, 200).text,
     },
     mdxOptions: {
       format: "mdx",

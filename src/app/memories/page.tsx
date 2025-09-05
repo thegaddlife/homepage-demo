@@ -45,7 +45,7 @@ export default async function MemoriesPage() {
             if (!result || !result.source) {
               return null;
             }
-            const timeToRead = readingTime(result.source, 100).text;
+            const timeToRead = readingTime(result.source, 200).text;
             return (
               <MemoryCard
                 key={chapter.slug}

@@ -22,7 +22,7 @@ export default async function ObituaryPage() {
     disableImports: true,
     parseFrontmatter: true,
     scope: {
-      readingTime: readingTime(result.source, 100).text,
+      readingTime: readingTime(result.source, 200).text,
     },
   };
 
