@@ -42,6 +42,12 @@ const getEventTypeStyles = (
         cardColor: "bg-neutral-800 border-violet-800",
         dateColor: "bg-neutral-800 border-gray-400",
       };
+    case "on this day":
+      return {
+        dotColor: "bg-gray-600",
+        cardColor: "bg-neutral-800 border-gray-600",
+        dateColor: "bg-neutral-800 border-gray-400",
+      };
     case "miscellaneous":
     default:
       return {
@@ -65,7 +71,7 @@ export const FamilyTimeline = () => {
             const isLeft = index % 2 === 0;
             const styles = getEventTypeStyles(
               item.eventType,
-              item.primaryPerson.name,
+              item.primaryPerson?.name,
               item.secondaryPerson?.name
             );
 
@@ -99,10 +105,10 @@ export const FamilyTimeline = () => {
                       <div
                         className={`absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600`}
                       >
-                        {item.primaryPerson.image ? (
+                        {item.primaryPerson?.image ? (
                           <Image
-                            src={item.primaryPerson.image}
-                            alt={item.primaryPerson.name}
+                            src={item.primaryPerson?.image}
+                            alt={item.primaryPerson?.name}
                             width={64}
                             height={64}
                             className="h-full w-full object-cover"
@@ -135,7 +141,7 @@ export const FamilyTimeline = () => {
                       <div className="flex flex-col">
                         <div className="flex items-center">
                           <span className="text-sm font-medium text-gray-100">
-                            {item.primaryPerson.name}
+                            {item.primaryPerson?.name}
                           </span>
                           {item.secondaryPerson && (
                             <>
@@ -197,10 +203,10 @@ export const FamilyTimeline = () => {
                           <div
                             className={`absolute top-1/2 left-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600 md:h-20 md:w-20`}
                           >
-                            {item.primaryPerson.image ? (
+                            {item.primaryPerson?.image ? (
                               <Image
-                                src={item.primaryPerson.image}
-                                alt={item.primaryPerson.name}
+                                src={item.primaryPerson?.image}
+                                alt={item.primaryPerson?.name}
                                 width={64}
                                 height={64}
                                 className="h-full w-full object-cover md:h-20 md:w-20"
@@ -233,7 +239,7 @@ export const FamilyTimeline = () => {
                           <div className="flex flex-col">
                             <div className="flex items-center">
                               <span className="text-sm font-medium text-gray-100 md:text-base">
-                                {item.primaryPerson.name}
+                                {item.primaryPerson?.name}
                               </span>
                               {item.secondaryPerson && (
                                 <>
@@ -307,7 +313,7 @@ export const FamilyTimeline = () => {
                           <div className="flex flex-col">
                             <div className="flex items-center">
                               <span className="text-sm font-medium text-gray-100 md:text-base">
-                                {item.primaryPerson.name}
+                                {item.primaryPerson?.name}
                               </span>
                               {item.secondaryPerson && (
                                 <>
@@ -337,10 +343,10 @@ export const FamilyTimeline = () => {
                           <div
                             className={`absolute top-1/2 right-0 h-16 w-16 -translate-y-1/2 overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600 md:h-20 md:w-20`}
                           >
-                            {item.primaryPerson.image ? (
+                            {item.primaryPerson?.image ? (
                               <Image
-                                src={item.primaryPerson.image}
-                                alt={item.primaryPerson.name}
+                                src={item.primaryPerson?.image}
+                                alt={item.primaryPerson?.name}
                                 width={64}
                                 height={64}
                                 className="h-full w-full object-cover md:h-20 md:w-20"

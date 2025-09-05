@@ -1,4 +1,9 @@
-export type EventType = "birth" | "death" | "marriage" | "miscellaneous";
+export type EventType =
+  | "birth"
+  | "death"
+  | "marriage"
+  | "on this day"
+  | "miscellaneous";
 
 export interface Person {
   name: string;
@@ -7,9 +12,9 @@ export interface Person {
 
 export interface TimelineItem {
   eventType: EventType;
-  primaryPerson: Person;
+  primaryPerson?: Person;
   secondaryPerson?: Person;
-  action: string;
+  action?: string;
   date: string;
   description?: string;
 }
@@ -395,6 +400,11 @@ export const timelineData: TimelineItem[] = [
     },
     action: "was born",
     date: "June 1, 1934",
+  },
+  {
+    eventType: "on this day",
+    description: "Beginning of World War II",
+    date: "September 1, 1939",
   },
   {
     eventType: "death",
