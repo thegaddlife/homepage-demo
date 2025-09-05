@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 interface MemorialNavProps {
-  variant?: "home" | "obituary" | "memories";
+  variant?: "home" | "obituary" | "memories" | "timeline";
 }
 
 export function MemorialNav({ variant = "home" }: MemorialNavProps) {
@@ -18,13 +18,15 @@ export function MemorialNav({ variant = "home" }: MemorialNavProps) {
           </>
         ) : (
           <Link
-            href="/"
+            href={variant === "timeline" ? "/memories" : "/"}
             className="group inline-flex items-center gap-2 text-white/70 hover:text-white"
           >
             <span className="grid h-8 w-8 place-content-center rounded-full bg-white/5 ring-1 ring-white/20 transition group-hover:bg-white/10">
               <ArrowLeft size={16} />
             </span>
-            <span className="text-sm tracking-widest">HOME</span>
+            <span className="text-sm tracking-widest">
+              {variant === "timeline" ? "MY MEMORIES" : "HOME"}
+            </span>
           </Link>
         )}
       </div>

@@ -4,7 +4,8 @@ import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import { MemorialNav } from "@/components/layout/MemorialNav";
 import { getMarkdownFromSlug } from "@/lib/file";
 import { getMemoriesSorted } from "@/lib/memories-utils";
-import { BookOpen } from "lucide-react";
+import Link from "next/link";
+import { BookOpen, Clock } from "lucide-react";
 import { readingTime } from "reading-time-estimator";
 import { MemoryCard } from "./components/memory-card";
 
@@ -20,6 +21,13 @@ export default async function MemoriesPage() {
           <div className="mb-4 flex items-center gap-3">
             <BookOpen className="h-8 w-8 text-white/60" />
             <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+            <Link
+              href="/memories/timeline"
+              className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+            >
+              <Clock className="h-4 w-4" />
+              View as Timeline
+            </Link>
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
             My Memories
