@@ -120,15 +120,26 @@ export const FamilyTimeline = () => {
                     {/* Desktop: Full-width bubble */}
                     <div className="hidden md:block">
                       <div className="flex justify-center">
-                        <div className="relative w-full max-w-6xl">
-                          <div className="mx-8 flex items-center justify-center space-x-4 rounded-lg border border-gray-600 bg-neutral-800 p-4 shadow-lg">
-                            <div className="h-10 w-10 flex-shrink-0 rounded bg-gray-500"></div>
+                        <div className="relative w-full max-w-4xl">
+                          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-400 py-1 shadow-lg">
+                            {item.image && (
+                              <Image
+                                src={item.image}
+                                alt={item.description || "Event image"}
+                                width={240}
+                                height={240}
+                                className="absolute left-4 h-20 w-20 rounded border-3 border-neutral-400 object-cover"
+                              />
+                            )}
                             <div className="flex flex-col">
-                              <span className="text-base font-medium text-gray-100">
-                                {item.description}
-                              </span>
-                              <span className="text-sm text-gray-400">
-                                {item.date}
+                              <span className="text-base font-medium">
+                                <span className="text-gray-800">
+                                  {item.description}
+                                </span>
+                                <span className="text-gray-600">
+                                  {" "}
+                                  - {item.date}
+                                </span>
                               </span>
                             </div>
                           </div>
