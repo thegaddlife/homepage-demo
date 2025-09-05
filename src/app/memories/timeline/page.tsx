@@ -72,33 +72,33 @@ export default function TimelinePage() {
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex items-start">
                 {/* Timeline dot */}
-                <div className="absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
+                <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
 
                 {/* Horizontal line from dot to date bubble center */}
-                <div className="absolute left-4 top-6 z-0 h-0.5 w-16 bg-gray-300 translate-y-1.5"></div>
+                <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-300"></div>
 
                 {/* Content area */}
                 <div className="ml-12 space-y-4">
                   {/* Date bubble - aligned with dot */}
-                  <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
+                  <div className="relative z-10 mt-2 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
                     <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
                       {item.date}
                     </span>
                   </div>
 
                   {/* Combined avatar and name bubble */}
-                  <div className="flex items-center rounded-full bg-white px-4 py-3 shadow-sm">
-                    <div className="mr-3 flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
+                  <div className="relative flex items-center rounded-full bg-white py-3 pr-4 pl-18 shadow-sm">
+                    <div className="absolute inset-0 h-16 w-16 overflow-hidden rounded-full bg-gray-300">
                       {item.image ? (
                         <Image
                           src={item.image}
                           alt={item.name}
-                          width={48}
-                          height={48}
+                          width={64}
+                          height={64}
                           className="h-full w-full object-cover"
                         />
                       ) : (
-                        <div className="h-6 w-6 rounded-full bg-gray-400"></div>
+                        <div className="h-full w-full rounded-full bg-gray-400"></div>
                       )}
                     </div>
                     <div>
