@@ -564,6 +564,21 @@ export const timelineData: TimelineItem[] = [
     description: "age 65",
   },
   {
+    eventType: "marriage",
+    primaryPerson: {
+      name: "Eugene Gadd",
+      image:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop&crop=face",
+    },
+    secondaryPerson: {
+      name: "Marianne Turner",
+      image:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop&crop=face",
+    },
+    action: "were married",
+    date: "October 28, 1977",
+  },
+  {
     eventType: "death",
     primaryPerson: {
       name: "Harry Betz",
