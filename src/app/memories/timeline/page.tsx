@@ -64,99 +64,55 @@ export default function TimelinePage() {
     <div className="min-h-screen bg-gray-100 px-4 py-12">
       <div className="mx-auto max-w-4xl">
         <div className="relative">
-          {/* Central timeline line */}
-          <div className="absolute left-1/2 h-full w-0.5 -translate-x-0.5 transform bg-gray-300"></div>
+          {/* Left-aligned timeline line */}
+          <div className="absolute left-8 h-full w-0.5 bg-gray-300"></div>
 
           {/* Timeline items */}
-          <div className="space-y-12">
+          <div className="space-y-8">
             {timelineData.map((item, index) => (
-              <div key={index} className="relative flex items-center">
+              <div key={index} className="relative">
                 {/* Timeline dot */}
-                <div className="absolute left-1/2 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
-
-                {item.side === "left" ? (
-                  // Left side layout
-                  <>
-                    {/* Horizontal line from dot to center of date bubble */}
-                    <div className="absolute left-1/2 z-0 h-0.5 bg-gray-300" style={{width: 'calc(25% + 2rem)'}}></div>
-                    
-                    <div className="flex w-1/2 justify-end pr-8">
-                      <div className="flex items-center space-x-4">
-                        <div className="text-right">
-                          <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                            <span className="font-medium text-gray-800">
-                              {item.name}
-                            </span>
-                            <span className="ml-1 font-normal text-gray-600 italic">
-                              {item.action}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
-                          {item.image ? (
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={64}
-                              height={64}
-                              className="h-full w-full object-cover"
-                            />
-                          ) : (
-                            <div className="h-8 w-8 rounded-full bg-gray-400"></div>
-                          )}
-                        </div>
-                      </div>
+                <div className="absolute left-8 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
+                
+                {/* Horizontal line from dot to date bubble */}
+                <div className="absolute left-8 top-1.5 z-0 h-0.5 w-24 bg-gray-300"></div>
+                
+                {/* Content area */}
+                <div className="ml-20 space-y-4">
+                  {/* Date bubble */}
+                  <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
+                    <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
+                      {item.date}
+                    </span>
+                  </div>
+                  
+                  {/* Avatar and name section */}
+                  <div className="flex items-center space-x-4">
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={64}
+                          height={64}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="h-8 w-8 rounded-full bg-gray-400"></div>
+                      )}
                     </div>
-                    <div className="w-1/2 pl-8">
-                      <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                        <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
-                          {item.date}
+                    <div>
+                      <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
+                        <span className="font-medium text-gray-800">
+                          {item.name}
+                        </span>
+                        <span className="ml-1 font-normal text-gray-600 italic">
+                          {item.action}
                         </span>
                       </div>
                     </div>
-                  </>
-                ) : (
-                  // Right side layout
-                  <>
-                    {/* Horizontal line from dot to center of date bubble */}
-                    <div className="absolute right-1/2 z-0 h-0.5 bg-gray-300" style={{width: 'calc(25% + 2rem)'}}></div>
-                    
-                    <div className="flex w-1/2 justify-end pr-8">
-                      <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                        <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
-                          {item.date}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-1/2 pl-8">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
-                          {item.image ? (
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={64}
-                              height={64}
-                              className="h-full w-full object-cover"
-                            />
-                          ) : (
-                            <div className="h-8 w-8 rounded-full bg-gray-400"></div>
-                          )}
-                        </div>
-                        <div>
-                          <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                            <span className="font-medium text-gray-800">
-                              {item.name}
-                            </span>
-                            <span className="ml-1 font-normal text-gray-600 italic">
-                              {item.action}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
