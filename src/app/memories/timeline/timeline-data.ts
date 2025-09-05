@@ -17,6 +17,7 @@ export interface TimelineItem {
   action?: string;
   date: string;
   description?: string;
+  image?: string;
 }
 
 export const timelineData: TimelineItem[] = [
@@ -404,6 +405,8 @@ export const timelineData: TimelineItem[] = [
   {
     eventType: "on this day",
     description: "Beginning of World War II",
+    image:
+      "https://images.unsplash.com/photo-1571840933517-88a527cd7008?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     date: "September 1, 1939",
   },
   {
