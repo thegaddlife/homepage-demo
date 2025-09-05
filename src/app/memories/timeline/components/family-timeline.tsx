@@ -42,12 +42,6 @@ const getEventTypeStyles = (
         cardColor: "bg-neutral-800 border-violet-800",
         dateColor: "bg-neutral-800 border-gray-400",
       };
-    case "on this day":
-      return {
-        dotColor: "bg-gray-600",
-        cardColor: "bg-neutral-800 border-gray-600",
-        dateColor: "bg-neutral-800 border-gray-400",
-      };
     case "miscellaneous":
     default:
       return {
@@ -128,7 +122,7 @@ export const FamilyTimeline = () => {
                                 alt={item.description || "Event image"}
                                 width={240}
                                 height={240}
-                                className="absolute left-4 h-20 w-20 rounded border-3 border-neutral-400 object-cover"
+                                className="absolute left-0 h-20 w-20 rounded border-3 border-neutral-400 object-cover"
                               />
                             )}
                             <div className="flex flex-col">
