@@ -16,7 +16,7 @@ export default function TimelinePage() {
           icon={Clock}
           title="Family Timeline"
           subtitle="of Eugene W. Gadd"
-          description="A chronological view of important family milestones and memories spanning Gene's life."
+          description="A chronological view of important family milestones and memories realting to Gene's life."
         />
       </MemorialContainer>
 

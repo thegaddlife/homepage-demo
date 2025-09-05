@@ -3,38 +3,51 @@
 import Image from "next/image";
 import { type EventType, timelineData } from "../timeline-data";
 
-const getEventTypeStyles = (eventType: EventType) => {
+const getEventTypeStyles = (
+  eventType: EventType,
+  primaryPersonName?: string,
+  secondaryPersonName?: string
+) => {
+  // Check if Eugene Gadd or Eugene Wilfred Gadd is involved
+  const isEugeneGaddEvent =
+    primaryPersonName === "Eugene Gadd" ||
+    secondaryPersonName === "Eugene Gadd" ||
+    primaryPersonName === "Eugene Wilfred Gadd" ||
+    secondaryPersonName === "Eugene Wilfred Gadd";
+
+  if (isEugeneGaddEvent) {
+    return {
+      dotColor: "bg-blue-700",
+      cardColor: "bg-blue-950 border-blue-800",
+      dateColor: "bg-neutral-800 border-gray-400",
+    };
+  }
+
   switch (eventType) {
     case "birth":
       return {
-        dotColor: "bg-green-400",
-        cardColor: "bg-green-950 border-green-700",
-        dateColor: "bg-green-800 border-green-600",
+        dotColor: "bg-emerald-600",
+        cardColor: "bg-neutral-800 border-emerald-800",
+        dateColor: "bg-neutral-800 border-gray-400",
       };
     case "death":
       return {
-        dotColor: "bg-red-400",
-        cardColor: "bg-red-950 border-red-700",
-        dateColor: "bg-red-800 border-red-600",
+        dotColor: "bg-rose-600",
+        cardColor: "bg-neutral-800 border-rose-800",
+        dateColor: "bg-neutral-800 border-gray-400",
       };
     case "marriage":
       return {
-        dotColor: "bg-pink-400",
-        cardColor: "bg-pink-950 border-pink-700",
-        dateColor: "bg-pink-800 border-pink-600",
-      };
-    case "anniversary":
-      return {
-        dotColor: "bg-purple-400",
-        cardColor: "bg-purple-950 border-purple-700",
-        dateColor: "bg-purple-800 border-purple-600",
+        dotColor: "bg-violet-600",
+        cardColor: "bg-neutral-800 border-violet-800",
+        dateColor: "bg-neutral-800 border-gray-400",
       };
     case "miscellaneous":
     default:
       return {
-        dotColor: "bg-blue-400",
-        cardColor: "bg-blue-950 border-blue-700",
-        dateColor: "bg-blue-800 border-blue-600",
+        dotColor: "bg-teal-600",
+        cardColor: "bg-neutral-800 border-teal-800",
+        dateColor: "bg-neutral-800 border-gray-400",
       };
   }
 };
@@ -50,7 +63,11 @@ export const FamilyTimeline = () => {
         <div className="space-y-8">
           {timelineData.map((item, index) => {
             const isLeft = index % 2 === 0;
-            const styles = getEventTypeStyles(item.eventType);
+            const styles = getEventTypeStyles(
+              item.eventType,
+              item.primaryPerson.name,
+              item.secondaryPerson?.name
+            );
 
             return (
               <div key={index} className="relative">

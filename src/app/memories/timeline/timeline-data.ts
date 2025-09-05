@@ -1,9 +1,4 @@
-export type EventType =
-  | "birth"
-  | "death"
-  | "marriage"
-  | "anniversary"
-  | "miscellaneous";
+export type EventType = "birth" | "death" | "marriage" | "miscellaneous";
 
 export interface Person {
   name: string;
