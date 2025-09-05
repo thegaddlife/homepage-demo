@@ -7,7 +7,7 @@ export const FamilyTimeline = () => {
     {
       name: "Elizabeth Collins",
       action: "was born",
-      date: "SEPTEMBER 9, 1879",
+      date: "September 9, 1879",
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=256&h=256&fit=crop&crop=face",
       side: "left",
@@ -15,7 +15,7 @@ export const FamilyTimeline = () => {
     {
       name: "Mark Lewis",
       action: "was born",
-      date: "JANUARY 28, 1886",
+      date: "January 28, 1886",
       image:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=256&h=256&fit=crop&crop=face",
       side: "right",
@@ -23,7 +23,7 @@ export const FamilyTimeline = () => {
     {
       name: "Elizabeth Collins",
       action: "has died",
-      date: "APRIL 15, 1907",
+      date: "April 15, 1907",
       image:
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=256&h=256&fit=crop&crop=face",
       side: "left",
@@ -31,7 +31,7 @@ export const FamilyTimeline = () => {
     {
       name: "Steven Lewis",
       action: "was born",
-      date: "APRIL 5, 1908",
+      date: "April 5, 1908",
       image:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=256&h=256&fit=crop&crop=face",
       side: "right",
@@ -39,7 +39,7 @@ export const FamilyTimeline = () => {
     {
       name: "Barbara Lewis",
       action: "was born",
-      date: "SEPTEMBER 17, 1912",
+      date: "September 17, 1912",
       image:
         "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=256&h=256&fit=crop&crop=face",
       side: "left",
@@ -47,7 +47,7 @@ export const FamilyTimeline = () => {
     {
       name: "John Lewis",
       action: "was born",
-      date: "JANUARY 18, 1915",
+      date: "January 18, 1915",
       image:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=256&h=256&fit=crop&crop=face",
       side: "right",
@@ -55,7 +55,7 @@ export const FamilyTimeline = () => {
     {
       name: "Michelle Lewis",
       action: "was born",
-      date: "AUGUST 25, 1918",
+      date: "August 25, 1918",
       image:
         "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=256&h=256&fit=crop&crop=face",
       side: "left",
@@ -82,7 +82,7 @@ export const FamilyTimeline = () => {
               <div className="ml-12 space-y-4">
                 {/* Date bubble - no background, smaller text, light border */}
                 <div className="relative z-10 mt-2 inline-block rounded-full border border-gray-400 bg-neutral-800 px-4 py-2">
-                  <span className="text-xs font-medium tracking-wide text-gray-300 uppercase">
+                  <span className="text-xs font-medium tracking-wide text-gray-300">
                     {item.date}
                   </span>
                 </div>
