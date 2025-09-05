@@ -72,7 +72,7 @@ export default function TimelinePage() {
             {timelineData.map((item, index) => (
               <div key={index} className="relative flex items-start">
                 {/* Timeline dot */}
-                <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-sky-600"></div>
+                <div className="absolute top-6 left-4 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-sky-700"></div>
 
                 {/* Horizontal line from dot to date bubble center */}
                 <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-300"></div>
