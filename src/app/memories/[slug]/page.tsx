@@ -7,6 +7,7 @@ import {
   getPostInformation,
 } from "@/lib/file";
 import { plugins } from "@/lib/mdx";
+import { components } from "@/mdxComponents";
 import { MDXRemote, MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import { notFound } from "next/navigation";
 import { readingTime } from "reading-time-estimator";
@@ -16,8 +17,9 @@ export default async function MemoriesPartsLayout({
 }: {
   params: { slug: string };
 }) {
-  const chapter = await getPostInformation(`memories/${params.slug}.mdx`);
-  const result = await getMarkdownFromSlug(`memories/${params.slug}`);
+  const { slug } = await params;
+  const chapter = await getPostInformation(`memories/${slug}.mdx`);
+  const result = await getMarkdownFromSlug(`memories/${slug}`);
 
   if (!result) {
     return notFound();
@@ -59,6 +61,7 @@ export default async function MemoriesPartsLayout({
           <MDXRemote
             source={result.source}
             options={options}
+            components={components}
             onError={ErrorComponent}
           />
         </article>

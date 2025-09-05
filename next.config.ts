@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
       {
@@ -13,12 +11,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: ["remark-gfm"],
-    rehypePlugins: [],
-  },
-});
-
-// Wrap MDX and Next.js config together
-export default withMDX(nextConfig);
+export default nextConfig;
