@@ -1,10 +1,10 @@
 import { MemorialContainer } from "@/components/layout/MemorialContainer";
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
+import { MemorialHeading } from "@/components/layout/MemorialHeading";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import { MemorialNav } from "@/components/layout/MemorialNav";
 import { getMarkdownFromSlug } from "@/lib/file";
 import { getMemoriesSorted } from "@/lib/memories-utils";
-import Link from "next/link";
 import { BookOpen, Clock } from "lucide-react";
 import { readingTime } from "reading-time-estimator";
 import { MemoryCard } from "./components/memory-card";
@@ -17,36 +17,24 @@ export default async function MemoriesPage() {
       <MemorialNav variant="memories" />
 
       <MemorialContainer>
-        <div className="mb-8">
-          <div className="mb-4 flex items-center gap-3">
-            <BookOpen className="h-8 w-8 text-white/60" />
-            <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-            <Link
-              href="/memories/timeline"
-              className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm text-white/80 transition-colors hover:bg-white/20 hover:text-white"
-            >
-              <Clock className="h-4 w-4" />
-              View as Timeline
-            </Link>
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-            My Memories
-          </h1>
-          <p className="mt-2 text-base text-white/70">By Eugene W. Gadd</p>
+        <MemorialHeading
+          icon={BookOpen}
+          title="My Memories"
+          subtitle="By Eugene W. Gadd"
+          description="Browse the chapters below. Click a card to begin reading this collection of memories spanning eight decades of life, love, and legacy."
+          actionButton={{
+            href: "/memories/timeline",
+            icon: Clock,
+            text: "View as Timeline",
+          }}
+        >
           <div className="mt-2 flex items-center gap-2 text-sm text-white/60">
             <div className="h-1 w-1 rounded-full bg-white/40" />
             <span>Originally finished in 1998</span>
             <div className="h-1 w-1 rounded-full bg-white/40" />
             <span>2nd Edition 2025</span>
           </div>
-          <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-white/70">
-              Browse the chapters below. Click a card to begin reading this
-              collection of memories spanning eight decades of life, love, and
-              legacy.
-            </p>
-          </div>
-        </div>
+        </MemorialHeading>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {sortedPosts.map(async (chapter, i) => {
             const result = await getMarkdownFromSlug(chapter.slug);
