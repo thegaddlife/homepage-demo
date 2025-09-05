@@ -65,51 +65,49 @@ export default function TimelinePage() {
       <div className="mx-auto max-w-4xl">
         <div className="relative">
           {/* Left-aligned timeline line */}
-          <div className="absolute left-8 h-full w-0.5 bg-gray-300"></div>
+          <div className="absolute left-4 h-full w-0.5 bg-gray-300"></div>
 
           {/* Timeline items */}
           <div className="space-y-8">
             {timelineData.map((item, index) => (
-              <div key={index} className="relative">
+              <div key={index} className="relative flex items-start">
                 {/* Timeline dot */}
-                <div className="absolute left-8 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
-                
-                {/* Horizontal line from dot to date bubble */}
-                <div className="absolute left-8 top-1.5 z-0 h-0.5 w-24 bg-gray-300"></div>
-                
+                <div className="absolute left-4 top-6 z-10 h-3 w-3 -translate-x-1/2 transform rounded-full bg-gray-800"></div>
+
+                {/* Horizontal line from dot to date bubble center */}
+                <div className="absolute left-4 top-6 z-0 h-0.5 w-16 bg-gray-300 translate-y-1.5"></div>
+
                 {/* Content area */}
-                <div className="ml-20 space-y-4">
-                  {/* Date bubble */}
+                <div className="ml-12 space-y-4">
+                  {/* Date bubble - aligned with dot */}
                   <div className="relative z-10 inline-block rounded-full bg-white px-6 py-3 shadow-sm">
                     <span className="text-sm font-medium tracking-wide text-gray-600 uppercase">
                       {item.date}
                     </span>
                   </div>
-                  
-                  {/* Avatar and name section */}
-                  <div className="flex items-center space-x-4">
-                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
+
+                  {/* Combined avatar and name bubble */}
+                  <div className="flex items-center rounded-full bg-white px-4 py-3 shadow-sm">
+                    <div className="mr-3 flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-300">
                       {item.image ? (
                         <Image
                           src={item.image}
                           alt={item.name}
-                          width={64}
-                          height={64}
+                          width={48}
+                          height={48}
                           className="h-full w-full object-cover"
                         />
                       ) : (
-                        <div className="h-8 w-8 rounded-full bg-gray-400"></div>
+                        <div className="h-6 w-6 rounded-full bg-gray-400"></div>
                       )}
                     </div>
                     <div>
-                      <div className="inline-block rounded-full bg-white px-6 py-3 shadow-sm">
-                        <span className="font-medium text-gray-800">
-                          {item.name}
-                        </span>
-                        <span className="ml-1 font-normal text-gray-600 italic">
-                          {item.action}
-                        </span>
-                      </div>
+                      <span className="text-sm font-medium text-gray-800">
+                        {item.name}
+                      </span>
+                      <span className="ml-1 text-sm font-normal text-gray-600 italic">
+                        {item.action}
+                      </span>
                     </div>
                   </div>
                 </div>
