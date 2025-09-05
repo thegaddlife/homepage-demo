@@ -59,6 +59,9 @@ importers:
       twemoji:
         specifier: ^14.0.2
         version: 14.0.2
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.3.1

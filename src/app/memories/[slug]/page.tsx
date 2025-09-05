@@ -1,3 +1,4 @@
+import ErrorComponent from "@/components/error-component";
 import { MemorialFooter } from "@/components/layout/MemorialFooter";
 import { MemorialLayout } from "@/components/layout/MemorialLayout";
 import {
@@ -5,22 +6,37 @@ import {
   getMarkdownFromSlug,
   getPostInformation,
 } from "@/lib/file";
-import { MDXRemote } from "next-mdx-remote-client/rsc";
+import { plugins } from "@/lib/mdx";
+import { MDXRemote, MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import { notFound } from "next/navigation";
+import { readingTime } from "reading-time-estimator";
 
 export default async function MemoriesPartsLayout({
   params,
 }: {
   params: { slug: string };
 }) {
-  const chapter = await getPostInformation(params.slug);
-  const result = await getMarkdownFromSlug(params.slug);
+  const chapter = await getPostInformation(`memories/${params.slug}.mdx`);
+  const result = await getMarkdownFromSlug(`memories/${params.slug}`);
 
   if (!result) {
     return notFound();
   }
 
   const idx = 1;
+
+  const options: MDXRemoteOptions = {
+    disableImports: true, // import statements in MDX don't work in pages router
+    parseFrontmatter: true,
+    scope: {
+      readingTime: readingTime(result.source, 100).text,
+    },
+    mdxOptions: {
+      format: "mdx",
+      ...plugins,
+      remarkRehypeOptions: undefined,
+    },
+  };
 
   return (
     <MemorialLayout>
@@ -40,7 +56,11 @@ export default async function MemoriesPartsLayout({
       </section>
       <main className="relative z-10 mx-auto max-w-3xl px-6 pt-8 pb-24">
         <article className="space-y-6 leading-relaxed text-white/80">
-          <MDXRemote source={result.source} />
+          <MDXRemote
+            source={result.source}
+            options={options}
+            onError={ErrorComponent}
+          />
         </article>
       </main>
       <MemorialFooter />
@@ -54,7 +74,7 @@ export async function generateStaticParams() {
   const article = (f: string) => f.includes("memories");
 
   return files.filter(article).map((filename) => ({
-    // replace the last dot with dash in the filename for slug
-    slug: filename.replace(/\.(?=[^.]*$)/, "-"),
+    // extract just the filename without path and extension
+    slug: filename.replace(/^memories\//, "").replace(/\.mdx?$/, ""),
   }));
 }
