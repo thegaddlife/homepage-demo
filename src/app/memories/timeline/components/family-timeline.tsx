@@ -71,14 +71,14 @@ export const FamilyTimeline = () => {
 
             return (
               <div key={index} className="relative">
-                {/* Timeline dot - Mobile: left-aligned, Desktop: center */}
+                {/* Timeline dot - Mobile: left-aligned, Desktop: center (hidden for "on this day" on desktop) */}
                 <div
-                  className={`absolute top-6 left-4 z-10 h-3 w-3 transform rounded-full ${styles.dotColor} md:left-1/2 md:-translate-x-1/2`}
+                  className={`absolute top-6 left-4 z-10 h-3 w-3 transform rounded-full ${styles.dotColor} ${item.eventType === "on this day" ? "md:hidden" : "md:left-1/2 md:-translate-x-1/2"}`}
                 ></div>
 
                 {/* Special layout for "on this day" events */}
                 {item.eventType === "on this day" ? (
-                  <div className="w-full">
+                  <div className="w-full md:py-8">
                     {/* Mobile: Same as other events but simplified */}
                     <div className="md:hidden">
                       <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600"></div>
@@ -115,7 +115,7 @@ export const FamilyTimeline = () => {
                     <div className="hidden md:block">
                       <div className="flex justify-center">
                         <div className="relative w-full max-w-4xl">
-                          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-400 py-1 shadow-lg">
+                          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-400 bg-neutral-200 py-1 shadow-lg">
                             {item.image && (
                               <Image
                                 src={item.image}
