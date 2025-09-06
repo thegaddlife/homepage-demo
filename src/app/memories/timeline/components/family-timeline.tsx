@@ -78,7 +78,7 @@ export const FamilyTimeline = () => {
 
                 {/* Special layout for "on this day" events */}
                 {item.eventType === "on this day" ? (
-                  <div className="w-full md:py-8">
+                  <div className="w-full md:pt-14 md:pb-8">
                     {/* Mobile: Same as other events but simplified */}
                     <div className="md:hidden">
                       <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600"></div>
@@ -115,22 +115,22 @@ export const FamilyTimeline = () => {
                     <div className="hidden md:block">
                       <div className="flex justify-center">
                         <div className="relative w-full max-w-4xl">
-                          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-400 bg-neutral-200 py-1 shadow-lg">
+                          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-800 py-1 shadow-lg">
                             {item.image && (
                               <Image
                                 src={item.image}
                                 alt={item.description || "Event image"}
                                 width={240}
                                 height={240}
-                                className="absolute left-0 h-20 w-20 rounded border-3 border-neutral-400 object-cover"
+                                className="absolute left-0 h-32 w-32 rounded-full border-3 border-neutral-400 object-cover"
                               />
                             )}
                             <div className="flex flex-col">
                               <span className="text-base font-medium">
-                                <span className="text-gray-800">
+                                <span className="text-white">
                                   {item.description}
                                 </span>
-                                <span className="text-gray-600">
+                                <span className="text-gray-200">
                                   {" "}
                                   - {item.date}
                                 </span>
