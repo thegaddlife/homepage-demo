@@ -1,7 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { type EventType, timelineData, type TimelineItem } from "../timeline-data";
+import {
+  type EventType,
+  type TimelineItem,
+  timelineData,
+} from "../timeline-data";
 
 interface EventStyles {
   dotColor: string;
@@ -59,33 +63,59 @@ const getEventTypeStyles = (
 };
 
 // Helper Components
-const TimelineDot = ({ item, styles }: { item: TimelineItem; styles: EventStyles }) => (
+const TimelineDot = ({
+  item,
+  styles,
+}: {
+  item: TimelineItem;
+  styles: EventStyles;
+}) => (
   <div
     data-id="timeline-dot"
     className={`absolute top-6 left-4 z-10 h-3 w-3 transform rounded-full ${styles.dotColor} ${
-      item.eventType === "on this day" ? "md:hidden" : "md:left-1/2 md:-translate-x-1/2"
+      item.eventType === "on this day"
+        ? "md:hidden"
+        : "md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
     }`}
   />
 );
 
-const DateBubble = ({ date, styles, className = "" }: { date: string; styles: EventStyles; className?: string }) => (
-  <div 
+const DateBubble = ({
+  date,
+  styles,
+  className = "",
+}: {
+  date: string;
+  styles: EventStyles;
+  className?: string;
+}) => (
+  <div
     data-id="date-bubble"
     className={`relative z-10 mt-2 inline-block rounded-full border ${styles.dateColor} px-4 py-2 md:px-5 md:py-3 ${className}`}
   >
-    <span className="text-xs font-medium tracking-wide text-gray-100 md:text-sm">{date}</span>
+    <span className="text-xs font-medium tracking-wide text-gray-100 md:text-sm">
+      {date}
+    </span>
   </div>
 );
 
-const PersonAvatar = ({ person, styles, size = "md" }: { person: { name: string; image: string }; styles: EventStyles; size?: "sm" | "md" | "lg" }) => {
+const PersonAvatar = ({
+  person,
+  styles,
+  size = "md",
+}: {
+  person: { name: string; image: string };
+  styles: EventStyles;
+  size?: "sm" | "md" | "lg";
+}) => {
   const sizeClasses = {
     sm: "h-12 w-12",
-    md: "h-16 w-16 md:h-20 md:w-20", 
-    lg: "h-20 w-20"
+    md: "h-16 w-16 md:h-20 md:w-20",
+    lg: "h-20 w-20",
   };
-  
+
   return (
-    <div 
+    <div
       data-id="person-avatar"
       className={`overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600 ${sizeClasses[size]}`}
     >
@@ -104,14 +134,23 @@ const PersonAvatar = ({ person, styles, size = "md" }: { person: { name: string;
   );
 };
 
-const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventStyles }) => (
+const OnThisDayEvent = ({
+  item,
+  styles,
+}: {
+  item: TimelineItem;
+  styles: EventStyles;
+}) => (
   <div data-id="on-this-day-event" className="w-full md:pt-14 md:pb-8">
     {/* Mobile */}
     <div className="md:hidden">
       <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600" />
       <div className="ml-12 space-y-4">
         <DateBubble date={item.date} styles={styles} />
-        <div data-id="on-this-day-mobile-bubble" className="flex w-fit items-center space-x-3 rounded-lg border border-gray-600 bg-neutral-800 p-1 pr-4 shadow-lg">
+        <div
+          data-id="on-this-day-mobile-bubble"
+          className="flex w-fit items-center space-x-3 rounded-lg border border-gray-600 bg-neutral-800 p-1 pr-4 shadow-lg"
+        >
           {item.image ? (
             <Image
               src={item.image}
@@ -124,7 +163,9 @@ const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventSty
             <div className="h-8 w-8 flex-shrink-0 rounded bg-gray-500" />
           )}
           <div className="flex flex-col">
-            <span className="text-sm font-medium text-gray-100">{item.description}</span>
+            <span className="text-sm font-medium text-gray-100">
+              {item.description}
+            </span>
           </div>
         </div>
       </div>
@@ -134,7 +175,10 @@ const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventSty
     <div className="hidden md:block">
       <div className="flex justify-center">
         <div className="relative w-full max-w-4xl">
-          <div data-id="on-this-day-desktop-bubble" className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-800 py-1 shadow-lg">
+          <div
+            data-id="on-this-day-desktop-bubble"
+            className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-800 py-1 shadow-lg"
+          >
             {item.image && (
               <Image
                 src={item.image}
@@ -157,9 +201,17 @@ const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventSty
   </div>
 );
 
-const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; styles: EventStyles; isLeft: boolean }) => {
+const RegularTimelineEvent = ({
+  item,
+  styles,
+  isLeft,
+}: {
+  item: TimelineItem;
+  styles: EventStyles;
+  isLeft: boolean;
+}) => {
   const isMarriage = item.eventType === "marriage" && item.secondaryPerson;
-  
+
   return (
     <>
       {/* Mobile Layout */}
@@ -167,33 +219,47 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
         <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600" />
         <div className="ml-12 space-y-4">
           <DateBubble date={item.date} styles={styles} />
-          <div data-id="regular-event-mobile-card" className={`relative flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-18 pl-18" : "pr-4 pl-18"} shadow-lg`}>
+          <div
+            data-id="regular-event-mobile-card"
+            className={`relative flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-18 pl-18" : "pr-4 pl-18"} shadow-lg`}
+          >
             {/* Primary person image */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
               <PersonAvatar person={item.primaryPerson!} styles={styles} />
             </div>
-            
+
             {/* Secondary person image for marriages */}
             {isMarriage && (
               <div className="absolute top-1/2 right-0 -translate-y-1/2">
                 <PersonAvatar person={item.secondaryPerson!} styles={styles} />
               </div>
             )}
-            
+
             <div className="flex flex-col">
               <div className="flex items-center">
-                <span className="text-sm font-medium text-gray-100">{item.primaryPerson?.name}</span>
+                <span className="text-sm font-medium text-gray-100">
+                  {item.primaryPerson?.name}
+                </span>
                 {item.secondaryPerson && (
                   <>
-                    <span className="mx-1 text-sm font-normal text-gray-300"> & </span>
-                    <span className="text-sm font-medium text-gray-100">{item.secondaryPerson.name}</span>
+                    <span className="mx-1 text-sm font-normal text-gray-300">
+                      {" "}
+                      &{" "}
+                    </span>
+                    <span className="text-sm font-medium text-gray-100">
+                      {item.secondaryPerson.name}
+                    </span>
                   </>
                 )}
               </div>
               <div className="flex items-center">
-                <span className="text-sm font-normal text-gray-300 italic">{item.action}</span>
+                <span className="text-sm font-normal text-gray-300 italic">
+                  {item.action}
+                </span>
                 {item.description && (
-                  <span className="ml-2 text-xs text-gray-400">({item.description})</span>
+                  <span className="ml-2 text-xs text-gray-400">
+                    ({item.description})
+                  </span>
                 )}
               </div>
             </div>
@@ -203,13 +269,63 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
 
       {/* Desktop Layout */}
       <div data-id="regular-event-desktop" className="hidden md:block">
-        <div className="flex items-start justify-center">
+        <div className="flex items-center justify-center">
           {/* Left side */}
-          <div className={`w-1/2 ${isLeft ? "pr-8" : "pr-16"}`}>
-            {isLeft && (
+          <div className="w-1/2 pr-8">
+            {isLeft ? (
               <div className="flex flex-col items-end space-y-4">
                 <DateBubble date={item.date} styles={styles} />
-                <div className="absolute top-6 left-1/2 z-0 h-0.5 w-16 -translate-x-full translate-y-1.5 bg-gray-600" />
+                <div className="absolute top-1/2 left-1/2 z-0 h-0.5 w-16 -translate-x-full -translate-y-1/2 bg-gray-600" />
+              </div>
+            ) : (
+              <div className="flex justify-end">
+                <div
+                  data-id="regular-event-desktop-card-left"
+                  className={`relative flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-18 pl-4 md:pr-24 md:pl-5"} min-h-20 shadow-lg md:py-4`}
+                >
+                  {isMarriage && (
+                    <div className="absolute top-1/2 left-0 -translate-y-1/2">
+                      <PersonAvatar
+                        person={item.secondaryPerson!}
+                        styles={styles}
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-col">
+                    <div className="flex items-center">
+                      <span className="text-sm font-medium text-gray-100 md:text-base">
+                        {item.primaryPerson?.name}
+                      </span>
+                      {item.secondaryPerson && (
+                        <>
+                          <span className="mx-1 text-sm font-normal text-gray-300 md:text-base">
+                            {" "}
+                            &{" "}
+                          </span>
+                          <span className="text-sm font-medium text-gray-100 md:text-base">
+                            {item.secondaryPerson.name}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-sm font-normal text-gray-300 italic md:text-base">
+                        {item.action}
+                      </span>
+                      {item.description && (
+                        <span className="ml-2 text-xs text-gray-400 md:text-sm">
+                          ({item.description})
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="absolute top-1/2 right-0 -translate-y-1/2">
+                    <PersonAvatar
+                      person={item.primaryPerson!}
+                      styles={styles}
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -218,29 +334,46 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
           <div className="w-1/2 pl-8">
             {isLeft ? (
               /* Avatar on right when date is on left */
-              <div data-id="regular-event-desktop-card-right" className={`relative mt-2 flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-4 pl-18 md:pr-5 md:pl-24"} shadow-lg md:py-4`}>
+              <div
+                data-id="regular-event-desktop-card-right"
+                className={`relative mt-2 flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-4 pl-18 md:pr-5 md:pl-24"} min-h-20 shadow-lg md:py-4`}
+              >
                 <div className="absolute top-1/2 left-0 -translate-y-1/2">
                   <PersonAvatar person={item.primaryPerson!} styles={styles} />
                 </div>
                 {isMarriage && (
                   <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                    <PersonAvatar person={item.secondaryPerson!} styles={styles} />
+                    <PersonAvatar
+                      person={item.secondaryPerson!}
+                      styles={styles}
+                    />
                   </div>
                 )}
                 <div className="flex flex-col">
                   <div className="flex items-center">
-                    <span className="text-sm font-medium text-gray-100 md:text-base">{item.primaryPerson?.name}</span>
+                    <span className="text-sm font-medium text-gray-100 md:text-base">
+                      {item.primaryPerson?.name}
+                    </span>
                     {item.secondaryPerson && (
                       <>
-                        <span className="mx-1 text-sm font-normal text-gray-300 md:text-base"> & </span>
-                        <span className="text-sm font-medium text-gray-100 md:text-base">{item.secondaryPerson.name}</span>
+                        <span className="mx-1 text-sm font-normal text-gray-300 md:text-base">
+                          {" "}
+                          &{" "}
+                        </span>
+                        <span className="text-sm font-medium text-gray-100 md:text-base">
+                          {item.secondaryPerson.name}
+                        </span>
                       </>
                     )}
                   </div>
                   <div className="flex items-center">
-                    <span className="text-sm font-normal text-gray-300 italic md:text-base">{item.action}</span>
+                    <span className="text-sm font-normal text-gray-300 italic md:text-base">
+                      {item.action}
+                    </span>
                     {item.description && (
-                      <span className="ml-2 text-xs text-gray-400 md:text-sm">({item.description})</span>
+                      <span className="ml-2 text-xs text-gray-400 md:text-sm">
+                        ({item.description})
+                      </span>
                     )}
                   </div>
                 </div>
@@ -249,46 +382,11 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
               /* Date on right when avatar is on left */
               <div className="flex flex-col items-start space-y-4">
                 <DateBubble date={item.date} styles={styles} />
-                <div className="absolute top-6 left-1/2 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600" />
+                <div className="absolute top-1/2 left-1/2 z-0 h-0.5 w-16 -translate-y-1/2 bg-gray-600" />
               </div>
             )}
           </div>
         </div>
-
-        {/* Avatar on left side for right-aligned items */}
-        {!isLeft && (
-          <div className="absolute top-2 left-0 w-1/2 pr-8">
-            <div className="flex justify-end">
-              <div data-id="regular-event-desktop-card-left" className={`relative flex items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-18 pl-4 md:pr-24 md:pl-5"} shadow-lg md:py-4`}>
-                {isMarriage && (
-                  <div className="absolute top-1/2 left-0 -translate-y-1/2">
-                    <PersonAvatar person={item.secondaryPerson!} styles={styles} />
-                  </div>
-                )}
-                <div className="flex flex-col">
-                  <div className="flex items-center">
-                    <span className="text-sm font-medium text-gray-100 md:text-base">{item.primaryPerson?.name}</span>
-                    {item.secondaryPerson && (
-                      <>
-                        <span className="mx-1 text-sm font-normal text-gray-300 md:text-base"> & </span>
-                        <span className="text-sm font-medium text-gray-100 md:text-base">{item.secondaryPerson.name}</span>
-                      </>
-                    )}
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-sm font-normal text-gray-300 italic md:text-base">{item.action}</span>
-                    {item.description && (
-                      <span className="ml-2 text-xs text-gray-400 md:text-sm">({item.description})</span>
-                    )}
-                  </div>
-                </div>
-                <div className="absolute top-1/2 right-0 -translate-y-1/2">
-                  <PersonAvatar person={item.primaryPerson!} styles={styles} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );
@@ -299,7 +397,10 @@ export const FamilyTimeline = () => {
     <div data-id="family-timeline-container" className="mx-auto max-w-6xl">
       <div className="relative">
         {/* Mobile: Left-aligned timeline line, Desktop: Center-aligned timeline line */}
-        <div data-id="timeline-line" className="absolute left-5 h-full w-0.5 bg-gray-600 md:left-1/2 md:-translate-x-1/2"></div>
+        <div
+          data-id="timeline-line"
+          className="absolute left-5 h-full w-0.5 bg-gray-600 md:left-1/2 md:-translate-x-1/2"
+        ></div>
 
         {/* Timeline items */}
         <div data-id="timeline-items-container" className="space-y-8">
@@ -312,12 +413,20 @@ export const FamilyTimeline = () => {
             );
 
             return (
-              <div key={index} data-id={`timeline-item-${index}`} className="relative">
+              <div
+                key={index}
+                data-id={`timeline-item-${index}`}
+                className="relative"
+              >
                 <TimelineDot item={item} styles={styles} />
                 {item.eventType === "on this day" ? (
                   <OnThisDayEvent item={item} styles={styles} />
                 ) : (
-                  <RegularTimelineEvent item={item} styles={styles} isLeft={isLeft} />
+                  <RegularTimelineEvent
+                    item={item}
+                    styles={styles}
+                    isLeft={isLeft}
+                  />
                 )}
               </div>
             );
