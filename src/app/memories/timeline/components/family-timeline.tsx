@@ -61,6 +61,7 @@ const getEventTypeStyles = (
 // Helper Components
 const TimelineDot = ({ item, styles }: { item: TimelineItem; styles: EventStyles }) => (
   <div
+    data-id="timeline-dot"
     className={`absolute top-6 left-4 z-10 h-3 w-3 transform rounded-full ${styles.dotColor} ${
       item.eventType === "on this day" ? "md:hidden" : "md:left-1/2 md:-translate-x-1/2"
     }`}
@@ -68,7 +69,10 @@ const TimelineDot = ({ item, styles }: { item: TimelineItem; styles: EventStyles
 );
 
 const DateBubble = ({ date, styles, className = "" }: { date: string; styles: EventStyles; className?: string }) => (
-  <div className={`relative z-10 mt-2 inline-block rounded-full border ${styles.dateColor} px-4 py-2 md:px-5 md:py-3 ${className}`}>
+  <div 
+    data-id="date-bubble"
+    className={`relative z-10 mt-2 inline-block rounded-full border ${styles.dateColor} px-4 py-2 md:px-5 md:py-3 ${className}`}
+  >
     <span className="text-xs font-medium tracking-wide text-gray-100 md:text-sm">{date}</span>
   </div>
 );
@@ -81,7 +85,10 @@ const PersonAvatar = ({ person, styles, size = "md" }: { person: { name: string;
   };
   
   return (
-    <div className={`overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600 ${sizeClasses[size]}`}>
+    <div 
+      data-id="person-avatar"
+      className={`overflow-hidden rounded-full border-3 ${styles.cardColor.split(" ")[0]} bg-gray-600 ${sizeClasses[size]}`}
+    >
       {person.image ? (
         <Image
           src={person.image}
@@ -98,13 +105,13 @@ const PersonAvatar = ({ person, styles, size = "md" }: { person: { name: string;
 };
 
 const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventStyles }) => (
-  <div className="w-full md:pt-14 md:pb-8">
+  <div data-id="on-this-day-event" className="w-full md:pt-14 md:pb-8">
     {/* Mobile */}
     <div className="md:hidden">
       <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600" />
       <div className="ml-12 space-y-4">
         <DateBubble date={item.date} styles={styles} />
-        <div className="flex w-fit items-center space-x-3 rounded-lg border border-gray-600 bg-neutral-800 p-1 pr-4 shadow-lg">
+        <div data-id="on-this-day-mobile-bubble" className="flex w-fit items-center space-x-3 rounded-lg border border-gray-600 bg-neutral-800 p-1 pr-4 shadow-lg">
           {item.image ? (
             <Image
               src={item.image}
@@ -127,7 +134,7 @@ const OnThisDayEvent = ({ item, styles }: { item: TimelineItem; styles: EventSty
     <div className="hidden md:block">
       <div className="flex justify-center">
         <div className="relative w-full max-w-4xl">
-          <div className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-800 py-1 shadow-lg">
+          <div data-id="on-this-day-desktop-bubble" className="relative z-20 mx-8 flex items-center justify-center rounded-lg border border-gray-600 bg-neutral-800 py-1 shadow-lg">
             {item.image && (
               <Image
                 src={item.image}
@@ -156,11 +163,11 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
   return (
     <>
       {/* Mobile Layout */}
-      <div className="md:hidden">
+      <div data-id="regular-event-mobile" className="md:hidden">
         <div className="absolute top-6 left-4 z-0 h-0.5 w-16 translate-y-1.5 bg-gray-600" />
         <div className="ml-12 space-y-4">
           <DateBubble date={item.date} styles={styles} />
-          <div className={`relative flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-18 pl-18" : "pr-4 pl-18"} shadow-lg`}>
+          <div data-id="regular-event-mobile-card" className={`relative flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-18 pl-18" : "pr-4 pl-18"} shadow-lg`}>
             {/* Primary person image */}
             <div className="absolute top-1/2 left-0 -translate-y-1/2">
               <PersonAvatar person={item.primaryPerson!} styles={styles} />
@@ -195,7 +202,7 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden md:block">
+      <div data-id="regular-event-desktop" className="hidden md:block">
         <div className="flex items-start justify-center">
           {/* Left side */}
           <div className={`w-1/2 ${isLeft ? "pr-8" : "pr-16"}`}>
@@ -211,7 +218,7 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
           <div className="w-1/2 pl-8">
             {isLeft ? (
               /* Avatar on right when date is on left */
-              <div className={`relative mt-2 flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-4 pl-18 md:pr-5 md:pl-24"} shadow-lg md:py-4`}>
+              <div data-id="regular-event-desktop-card-right" className={`relative mt-2 flex w-fit items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-4 pl-18 md:pr-5 md:pl-24"} shadow-lg md:py-4`}>
                 <div className="absolute top-1/2 left-0 -translate-y-1/2">
                   <PersonAvatar person={item.primaryPerson!} styles={styles} />
                 </div>
@@ -252,7 +259,7 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
         {!isLeft && (
           <div className="absolute top-2 left-0 w-1/2 pr-8">
             <div className="flex justify-end">
-              <div className={`relative flex items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-18 pl-4 md:pr-24 md:pl-5"} shadow-lg md:py-4`}>
+              <div data-id="regular-event-desktop-card-left" className={`relative flex items-center rounded-full border ${styles.cardColor} py-3 ${isMarriage ? "pr-24 pl-24 md:pr-28 md:pl-28" : "pr-18 pl-4 md:pr-24 md:pl-5"} shadow-lg md:py-4`}>
                 {isMarriage && (
                   <div className="absolute top-1/2 left-0 -translate-y-1/2">
                     <PersonAvatar person={item.secondaryPerson!} styles={styles} />
@@ -289,13 +296,13 @@ const RegularTimelineEvent = ({ item, styles, isLeft }: { item: TimelineItem; st
 
 export const FamilyTimeline = () => {
   return (
-    <div className="mx-auto max-w-6xl">
+    <div data-id="family-timeline-container" className="mx-auto max-w-6xl">
       <div className="relative">
         {/* Mobile: Left-aligned timeline line, Desktop: Center-aligned timeline line */}
-        <div className="absolute left-5 h-full w-0.5 bg-gray-600 md:left-1/2 md:-translate-x-1/2"></div>
+        <div data-id="timeline-line" className="absolute left-5 h-full w-0.5 bg-gray-600 md:left-1/2 md:-translate-x-1/2"></div>
 
         {/* Timeline items */}
-        <div className="space-y-8">
+        <div data-id="timeline-items-container" className="space-y-8">
           {timelineData.map((item, index) => {
             const isLeft = index % 2 === 0;
             const styles = getEventTypeStyles(
@@ -305,7 +312,7 @@ export const FamilyTimeline = () => {
             );
 
             return (
-              <div key={index} className="relative">
+              <div key={index} data-id={`timeline-item-${index}`} className="relative">
                 <TimelineDot item={item} styles={styles} />
                 {item.eventType === "on this day" ? (
                   <OnThisDayEvent item={item} styles={styles} />
